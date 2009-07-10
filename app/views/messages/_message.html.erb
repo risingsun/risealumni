@@ -1,0 +1,22 @@
+<%
+#locals
+message ||= @message
+to_list ||= @to_list
+%>
+<div class="widget_large">
+  <span class="widget_lrg_top"></span>  
+  <%= render :partial => "header_links"%>
+  <div class="comments">
+    From: <%= link_to message.sender.full_name, message.sender %><br />
+    When: <%= time_ago_in_words message.created_at %> ago<br />
+    <strong>Subject: <%= h message.subject %></strong>
+    <%= textilize message.body %>
+  </div>
+  <div class="message_reply_button">
+    <% if message && message.sender != @p && !message.system_message%>
+        <%= link_to theme_image("reply.png"), reply_message_profile_message_path(@p, message) %>
+     
+    <% end %>
+  </div>
+  <span class="widget_lrg_btm"></span>
+</div>

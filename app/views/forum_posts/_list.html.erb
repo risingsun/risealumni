@@ -1,0 +1,29 @@
+<%-
+#locals
+profile ||= @profile
+size ||= 10
+posts ||= profile.forum_posts.find :all, :limit => size
+
+
+total = profile.forum_posts.count
+-%>
+
+<% unless posts.empty? %>
+  <div class="widget_large">
+    <span class="widget_lrg_top"></span>
+    <%= slide_up_down_header('show','posts_info',
+                        "Most Recent Forums Post<span> (latest #{posts.size } of #{total})</span>")%>
+    <div id="posts_info">
+      <div class="complete_middle_panel">
+        <% posts.each do |post|%>
+          <div class='comments'>
+            <img src='/images/post-icon.png'/>
+            <%= forum_posts_li post %>
+          </div>
+        <% end %>
+      </div> 
+    </div>
+    <div class="clear_div"></div>
+    <span class="widget_lrg_btm"></span>
+  </div>
+<% end %>

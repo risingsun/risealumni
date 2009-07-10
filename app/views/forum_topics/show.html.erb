@@ -1,0 +1,33 @@
+<div class="forum_links">
+  <%= link_to "Back to Forums", forums_path %>|
+  <%= link_to "Back to #{@forum.name}", forum_path(@forum) %>
+</div>
+<div class="widget_complete">
+  <span class="widget_complete_top"></span>
+  <h3 class="forum_head">
+    <div class="froum_page_title"><%= sanitize(@topic.title)%></div>
+    <div class="forum_links">
+      <% if @u.is_admin? %>
+        <%= link_to image_tag('edit.png', :title => "Edit Topic"), 
+                  edit_forum_topic_path(@topic.forum,@topic)%>
+        <%= link_to image_tag('delete.png', :title => "Delete Topic"), 
+                  forum_topic_path(@topic.forum,@topic), 
+                  :method => :delete %>
+      <% end %>
+   </div>
+ </h3>
+ <div class="forum_text">
+ <% unless @posts.blank? %>
+    <%= render :partial => 'forum_posts/post', :collection => @posts%>
+ <% end %>
+   <%- if @u %>
+     <%= render :partial => "forum_posts/form", :locals=>{:css_class=>:followup_post_body} %>
+   <%- else %>
+     <h1>Please <%= link_to "login", login_path %> or <%= link_to "sign-up", signup_path %> to participate!</h1>
+   <%- end %>
+ </div>
+ <%= will_paginate @posts %>
+ <div class="clear_div"></div>
+ <span class="widget_complete_btm"></span>
+</div>
+  

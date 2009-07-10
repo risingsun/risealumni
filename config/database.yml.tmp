@@ -1,0 +1,21 @@
+
+development:
+  adapter: mysql
+  database: risealumni_development
+  username: root
+  password:
+  encoding: utf8
+
+test:
+  adapter: mysql
+  database: risealumni_test
+  username: root
+  password:
+  encoding: utf8
+
+production:
+  adapter: mysql
+  database: risealumni_development
+  username: root
+  password:
+  encoding: utf8

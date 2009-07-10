@@ -1,0 +1,48 @@
+<% form_for :notification_control, @notification_control, :url => notification_control_profile_path(@p), :html=>{:method => :post} do |nf| %>
+  <% rounded_med_corner(:id => "notifications", :title => "Notifications", :button => 'update-notifications.png') do %>
+    <table>
+      <thead>
+        <th>Notification</th>
+        <th>Email Notification</th>
+        <th>Message Notification</th>
+      </thead>
+      <tbody>
+       <tr>
+        <td>News Notification</td>
+        <td><%= nf.check_box  :news_email %></td>
+        <td><%= nf.check_box  :news_message %></td>
+      </tr>
+      <tr>
+        <td>Event Notification</td>
+        <td><%= nf.check_box  :event_email%></td>
+        <td><%= nf.check_box  :event_message%></td>
+      </tr>
+      <tr>
+        <td>Message Notification</td>
+        <td><%= nf.check_box  :message_email%></td>
+        <td> - </td>
+      </tr>
+      <tr>
+        <td>Blog Comment Notification</td>
+        <td><%= nf.check_box  :blog_comment_email%></td>
+        <td> - </td>
+      </tr>
+      <tr>
+        <td>Profile Comment Notification</td>
+        <td><%= nf.check_box :profile_comment_email%></td>    
+        <td> - </td>
+      </tr>
+      <tr>
+        <td>Follow Notification</td>
+        <td><%= nf.check_box  :follow_email%></td>
+        <td><%= nf.check_box  :follow_message%></td>
+      </tr>
+      <tr>
+        <td>Delete Friend Notification</td>
+        <td><%= nf.check_box :delete_friend_email%></td> 
+        <td><%= nf.check_box  :delete_friend_message%></td>             
+      </tr>
+     </tbody>
+    </table>
+  <% end %>
+<% end %>

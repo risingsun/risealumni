@@ -1,0 +1,29 @@
+<% 
+  profile ||= @profile
+  type ||= 'friends'
+  size ||= 10
+  list = profile.send(type).find(:all, :limit => size, :order => 'RAND()') rescue []
+  total = profile.send(type).count
+  with_friending ||= false
+  if type == "followings"
+    link =  followings_profile_path(@profile)
+  elsif type == "followers"
+    link =  followers_profile_path(@profile)
+  else
+    link =  profile_friends_path(@profile)
+  end
+ %>
+<div class="widget_large">
+  <span class="widget_lrg_top"></span>
+  <%= slide_up_down_header('show',"#{type}_info","#{type.titleize + (link_to ' (See All)', "#{link}" if list.size < total).to_s}")%>
+  <div id="<%= type %>_info">
+    <div id="<%= type %>">
+      <%- unless list.empty? -%>
+        <%= render :partial  => "shared/mini_profile", :collection => list, :locals => {:with_friending => with_friending}%>
+      <% else %>
+        <span class="comments"><%= SITE_NOT_RECORD_MSG%></span>
+      <%- end -%>
+    </div>
+  </div>
+  <span class="widget_lrg_btm"></span>
+</div>

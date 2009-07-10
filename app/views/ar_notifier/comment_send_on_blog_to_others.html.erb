@@ -1,0 +1,4 @@
+<%= @comment.profile.first_name%> wrote on <%= @comment.commentable.profile.first_name%> Blog
+
+<%= @comment.comment %>
+<%= render :partial => 'account_mailer/email_footer' %>

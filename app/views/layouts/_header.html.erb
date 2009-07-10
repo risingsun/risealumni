@@ -1,0 +1,8 @@
+<div class="header_container">
+  <%= link_to image_tag("b.gif", :height => 120, :width => 345, :class => "header_back", :alt => SITE_NAME_FULL), home_path %>
+  <% if @u %>
+    <div class="search_container">
+      <%= render :partial => "shared/search" %>
+    </div>
+  <% end %>
+</div>

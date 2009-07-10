@@ -1,0 +1,9 @@
+<div id='cropwrap'>
+  <%= display_image(photo,{},{:id => 'cropBlurbImage'})%>
+</div>
+<div id='cropresults'>
+  <%= f.labelled_text_field "", :x,:class=>"hidden"%>
+  <%= f.labelled_text_field "", :y, :class=>"hidden"%>
+  <%= f.labelled_text_field "", :width, :class=>"hidden" %>
+  <%= f.labelled_text_field "", :height, :class=>"hidden" %>
+</div>

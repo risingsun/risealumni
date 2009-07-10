@@ -1,0 +1,14 @@
+Status :<%= @activation %>
+Name :<%= @user.full_name + " (#{@user.profile.group})" %>
+Email :<%= @user.profile.email %> 
+
+<% unless @user.profile.is_active %>
+Details provided by <%= @user.full_name %> for verification to assist in activation :
+
+  <%= render :partial => 'match', :collection => @user.matched_referrers %>
+
+  <% unless @user.additional_message.blank? %>
+Additional Message: <%= @user.additional_message %>
+  <% end %>
+<% end %>
+<%= render :partial => 'email_footer' %>

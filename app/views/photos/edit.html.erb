@@ -1,0 +1,18 @@
+<div class="widget_complete">
+  <span class="widget_complete_top"></span>
+  <div class="clear_div"></div>
+  <% form_for(@photo,:html=>{:method => :put,:multipart=>true}) do |f| %>
+    <%= f.error_messages %>
+    <%= render :partial => is_blurb_image?(@blurb_image)  ? "photos/edit_blurb_image" : "photos/edit_photo",:locals => {:photo => @photo,:f => f}%>
+    <%= f.labelled_text_field "Caption", :caption, :wrap_class => cycle(:row_complete_light, :row_complete_dark) %>
+    <button class="buttons" type ="submit" >
+      <%= theme_image("save.png") %>
+    </button>
+  <%end%>
+  <span class="widget_complete_btm"></span>
+</div>
+
+
+
+
+

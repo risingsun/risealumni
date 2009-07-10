@@ -1,0 +1,33 @@
+<% cache(cache_name_flickr(params[:set_id],params[:page]),SITE_FLICKR_EXPIRE_TIME_MIN.minutes.from_now) do %>
+  <%if @pictures.blank?%>
+    <div class="comments"><%- SITE_NOT_RECORD_MSG%></div>
+  <%else%>
+    <div id="gallery" class="content">
+      <div id="controls" class="controls"></div>
+      <div id="loading" class="loader"></div>
+      <div id="slideshow" class="slideshow"></div>
+      <div id="caption" class="embox"></div>
+    </div>
+    <div id="thumbs" class="navigation">
+      <ul class="thumbs noscript">
+        <% @pictures.each do |f|%>
+          <li title="<%= f.url('s')%>">
+            <a class="thumb" href="<%= f.url%>">
+            </a>
+            <div class="caption">
+              <div class="image-title"><%= f.title %></div>
+            </div>
+          </li>
+        <%end%>
+      </ul>
+    </div>
+  <% end %>
+<%end%>
+<script type="text/javascript">
+  gallery();
+</script>
+
+
+
+
+

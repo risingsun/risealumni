@@ -1,0 +1,87 @@
+<%
+#locals
+blog ||= @blog
+show_all_comments ||= false
+%>
+<div id="blog_<%= blog.id %>" class="widget_large">
+  <span class="widget_lrg_top"></span>
+  <h3 class="blog_head">
+    <%= icon(blog.profile) %>
+    <% if @q.nil? %>
+      <%= link_to sanitize(blog.title),
+        profile_blog_path(blog.profile, blog) %>
+    <%else%>
+      <%= link_to highlight(blog.title,@q,"<span class = 'tag_class'>#{params[:search][:blog]}</span>"),
+        profile_blog_path(blog.profile, blog)  %>
+    <%end%>
+    <%- if @my_blog -%>
+      <%= link_to image_tag('edit.png', :title => "Edit blog post"),
+          edit_profile_blog_path(blog.profile, blog)%>
+      <%= link_to image_tag('delete.png', :title => "Delete blog post"),
+          profile_blog_path(blog.profile, blog),
+          :method => :delete %>
+    <%- end -%>
+    <div class="created_date">Posted by <%= blog.profile.full_name%> at <%= blog.updated_at.to_date.to_formatted_s(:rfc822) %> </div>
+  </h3>
+  <div class="blog_text">
+    <% if @q.nil? %>
+      <%= blog_body_content blog %>
+    <%else%>
+      <%= highlight(blog.body,@q,"<span class = 'tag_class'>#{params[:search][:blog]}</span>")%>
+    <%end%>
+  </div>
+  <div class="blog_text">
+    <%= link_to_function(image_tag('add_comment.png',
+        :title => "Add Comment",
+        :class => "add_comment"),
+      "Element.show('#{dom_id(blog)}_new_comment')",
+      :id => "#{blog.id}_add_comment") if @p && @p.is_active %>
+    <a href="<%= profile_blog_path(blog.profile,blog) %>">
+      <span id="blog_<%= blog.id %>_comment_size"><%= pluralize(blog.comments.size,'Comment') %></span>
+    </a>
+    <% if @is_admin && !blog.is_sent? %>
+      <%= link_to image_tag("email_go.png",
+        :title => "Send Blog",
+        :class => 'add_comment'),
+      send_admin_blog_path(blog), :confirm => 'Are you sure? Do you  want to send email to all users?' %>
+    <% end %>
+    <% unless blog.tags.blank? %>
+      Tags:
+      <% blog.tags.each do |blog_tag| %>
+        <% if @q.nil? %>
+          <%= link_to blog_tag.name, blogs_by_tag_path(blog_tag), :method => :get %> 
+        <%else%>  
+          <%= link_to highlight(blog_tag.name,@q,"<span class = 'tag_class'>#{params[:search][:blog]}</span>"), blogs_by_tag_path(blog_tag), :method => :get %>     
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="<%= dom_id(blog) %>_new_comment" style="display:none;">
+    <% remote_form_for :comment, :url => blog_comments_path(blog), :html => {:id => "#{dom_id(blog)}_comment_form"} do |f| %>
+      <%= f.text_area :comment, :class => "textarea", :id => "#{dom_id(blog)}_comment_area" %>
+      <div class="comment_btn_container">
+        <button class="buttons" type="submit">
+          <%= theme_image("add-comment.png") %>
+        </button>
+      </div>
+      <div class="comment_btn_container">
+        <%= link_to_function theme_image("cancel-button.png"),
+        "Element.hide('#{dom_id(blog)}_new_comment')",
+        :class => "buttons",
+        :id => "#{blog.id}_add_comment" %>
+      </div>
+    <% end %>
+  </div>
+  <% if show_all_comments %>
+    <% comments = blog.comments.paginate(:per_page => @per_page , :page => @page_no) %>
+    <div id="<%= dom_id(blog) %>_comment_div">
+      <div id="<%= dom_id(blog) %>_comments">
+          <%= render :partial => 'comments/comment', :collection => comments %>
+        <div class="clear_div"></div>
+        <%= will_paginate comments %>
+      </div>
+      <span id="<%= dom_id(blog) %>_comment_messages"></span>
+    </div>
+  <% end %>
+  <span class="widget_lrg_btm"></span>
+</div>

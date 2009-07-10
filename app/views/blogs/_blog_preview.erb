@@ -1,0 +1,14 @@
+<%
+#locals
+blog ||= @blog %>
+
+<div id="blog_<%= blog.id %>">
+  <span class="widget_lrg_top"></span>
+  <h3 class="blog_head">
+    <%= sanitize(blog.title)%>
+  </h3>
+  <div class="blog_text">
+    <%= blog.body %>
+  </div>
+  <span class="widget_lrg_btm"></span>
+</div>

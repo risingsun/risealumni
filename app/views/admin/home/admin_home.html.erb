@@ -1,0 +1,18 @@
+<% rounded_corner(:title => "Admin Actions", :size => 'lrg') do %>
+  <div class ="admin_class">
+    <div class="clear_div"></div>   
+    <div> <%= link_to "Events", admin_events_path%> </div> 
+    <div> <%= link_to "Feedbacks", feedbacks_path%> </div> 
+    <div> <%= link_to "Blogs", admin_blogs_path %> </div> 
+    <div> <%= link_to "Greetings", events_path %> </div>
+    <div> <%= link_to "Student Checks", student_checks_path %> </div>
+    <div> <%= link_to "Announcement", announcements_path %> </div>
+    <div> <%= link_to "Users", admin_users_path %> </div>
+    <div> <%= link_to "Site Content", admin_site_contents_path %> </div>
+    <div> <%= link_to "Preferences", admin_preferences_path %> </div>
+    <div> <%= link_to "Google Map Locations", google_map_locations_path %></div>
+    <div> <%= link_to "Photos", photos_path %> </div>
+    <div> <%= link_to "Photos", photos_path.add_param(:blurb_image=> false) %></div>
+    <div> <%= link_to "Blurb Images", photos_path.add_param(:blurb_image=> true) %></div>
+  </div>
+<% end %>

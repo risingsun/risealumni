@@ -1,0 +1,19 @@
+option1:
+  option: Gud
+  poll: poll_1
+  poll_responses_count: 1
+
+option2:
+  option: Easy
+  poll: poll_1
+  poll_responses_count: 1
+
+option3:
+  option: gems
+  poll: poll_1
+  poll_responses_count: 1
+
+option4:
+  option: shopping
+  poll: poll_2
+  poll_responses_count: 0

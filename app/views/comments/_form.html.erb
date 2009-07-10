@@ -1,0 +1,15 @@
+<% 
+#locals
+comment ||= @comment
+%>
+
+<div id="new_comment">    
+  <% remote_form_for(:comment, :url => profile_comments_path(@profile), :html => { :id => "#{dom_id(@profile)}_comment_form"} ) do |f| %>
+    <%= f.text_area :comment, :class=> "textarea"  %>
+    <div class="comment_btn_container">
+      <button class="buttons" type="submit">
+        <%= theme_image("add-comment.png") %>
+      </button>
+    </div>
+  <% end %>
+</div>

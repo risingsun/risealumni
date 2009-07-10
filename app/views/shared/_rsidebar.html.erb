@@ -1,0 +1,42 @@
+<% cache 'ads' do %>
+  <div class="ad">
+    <span class="ad_widget_top"></span>
+    <div class="clear_div"></div>
+    <h2 class="widget_title">Supporters</h2>
+    <%= render :partial => 'shared/ads', :collection => AD_ARRAY %>
+    <span class="ad_widget_btm"></span>
+  </div>
+<% end %>
+
+<%= render :partial => 'profiles/featured' %>
+<%= render :partial => "shared/search_by_keyword"  if @p%>
+<%= render :partial => 'profiles/greets' if @p %>
+
+
+<% if (params[:profile_id] || @show_profile_side_panel) && @profile.can_see_field('twitter_username',@p) %>
+  <% rounded_corner(:size => 'small', :title => 'Twitter Updates') do %>
+    <div id="twitter_div" class="twitter_update">
+      <ul id="twitter_update_list"></ul>
+    </div>
+  <% end %>
+  <% content_for :bottom do %>
+    <script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script>
+    <script type="text/javascript" src="http://twitter.com/statuses/user_timeline/<%= @profile.twitter_username %>.json?callback=twitterCallback2&count=5"></script>
+  <% end %>
+<% end %>
+
+
+
+<% if  params[:controller]=='blogs'||params[:controller]=='home' && @p  %>
+  <%= render :partial => 'blogs/archives' %>
+  <%#= render :partial => 'blogs/search_blog'  %>
+  <%= render :partial => 'blogs/blog_clouds' %>
+<% end %>
+
+<%if TWITTER_ENABLED %>
+  <% rounded_corner(:size => 'small', :title => 'Follow on Twitter') do %>
+    <div id="" class="twitter_update">
+      Follow <%= SITE_NAME %> on <%=  link_to "Twitter", TWITTER_FOLLOW_URL %> 
+    </div>
+  <% end %>
+<%end%>

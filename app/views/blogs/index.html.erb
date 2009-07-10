@@ -1,0 +1,26 @@
+<script type="text/javascript">
+  <%= @facebook_publish_feed_story %>
+</script>
+<% content_for :head do  -%>
+  <%= auto_discovery_link_tag :rss, profile_blogs_url(@profile, :rss), :title=>"#{@profile.full_name}'s Blogs" %>
+<% end -%>
+
+<div id="column_l">
+  <h2 class="page_title"><%= @profile.full_name %>'s Blogs
+    <%= link_to image_tag('add_new_post.png', 
+                          :title=>"Create New Blog Post", 
+                          :class=>"add_new_post2"), 
+                new_profile_blog_path(@profile) if me %>
+  </h2>
+  <% if @blogs.empty? %>
+    <div class="widget_large">
+      
+      <div class="comments"><%= @profile.full_name %> has no blog posts.</div>
+      <span class="widget_lrg_btm"></span>
+    </div>
+  <% else %>
+    <%= render :partial => 'blogs/blog', :collection => @blogs %>
+    <div class="clear_div"></div>     
+    <%= will_paginate @blogs%>
+  <% end %>
+</div>

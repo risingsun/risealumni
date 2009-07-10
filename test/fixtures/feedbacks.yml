@@ -1,0 +1,23 @@
+# == Schema Information
+# Schema version: 2
+#
+# Table name: feedbacks
+#
+#  id         :integer(11)   not null, primary key
+#  name       :string(255)   
+#  email      :string(255)   
+#  subject    :string(255)   
+#  message    :text          
+#  profile_id :integer(11)   
+#  created_at :datetime      
+#  updated_at :datetime      
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+feedback1:
+  name: pooja
+  message: It is really good 

@@ -1,0 +1,17 @@
+<% rounded_corner(:title => 'RSVP', :size => 'small') do %>
+  <div class="poll_option poll_text" id="event_rsvp_<%= @event.id%>" >
+    <%= render :partial => 'admin/events/rsvp',:locals => {:event => @event,:status => 'show_page'} %>
+  </div>
+<% end %>
+<% rounded_corner(:title => "Attending (#{@event.attending.size}) " + link_to('See All',attending_members_admin_event_path(@event)), :size => 'small') do %>
+      <%= render :partial => 'profiles/newest_member', :collection => @event.list('attending') %>
+<% end %>
+<% rounded_corner(:title => "Not Attending (#{@event.not_attending.size}) " + link_to('See All',not_attending_members_admin_event_path(@event)), :size => 'small') do %>
+      <%= render :partial => 'profiles/newest_member', :collection => @event.list('not_attending') %>
+<% end %>
+<% rounded_corner(:title => "May Be Attending (#{@event.may_be_attending.size}) " + link_to('See All', may_be_attending_members_admin_event_path(@event)), :size => 'small') do %>
+      <%= render :partial => 'profiles/newest_member', :collection => @event.list('may_be_attending') %>
+<% end %>
+<% rounded_corner(:title => "Admin", :size => 'small') do %>
+      <%= render :partial => 'profiles/newest_member', :collection => @event.organizers %>
+<% end %>

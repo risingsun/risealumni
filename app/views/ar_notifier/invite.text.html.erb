@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to Mansinghites' Alumni Association Online Social Networking</title>
+    <style type="text/css">
+      <!--
+      body {
+        margin-left: 0px;
+        margin-top: 10px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        background-color: #982a2a;
+        font-family: "Trebuchet MS",Arial, sans-serif;
+      }
+      -->
+  </style></head>
+
+  <body>
+    <div align="left">
+      <table width="483" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><%= link_to image_tag("mail_header.jpg", :alt => SITE_NAME), home_url %></td>
+        </tr>
+        <tr>
+          <td bgcolor="#f6dcc6" style="border-left:3px solid #aa4d49;border-right:3px solid #aa4d49;">
+
+            <p style="font-size: 16px; color:#68A7BF; font-weight:bold;text-align:left;  padding-left: 20px; padding-top: 10px;" >Dear <%= @student.full_name %>,</p>
+
+            <p style="font-size: 12px; color:#666; text-align:left; padding-left: 20px; padding-right: 20px;">
+
+              It gives us immense pleasure to announce the beginning of a new era of communication between us.
+              As of today we begin a constant web presence at <%= link_to SITE, home_url %>. 
+              Our site hosts probably India’s first and definitely the finest Online Social Networking application for a defined community.
+              A lot of hard work and dedication has gone in to make our school networking application one of the very best. 
+              It is really nothing like any school alumni site you've seen in India before.
+            </p>
+
+            <p style="font-size: 12px; color:#666; text-align:left; padding-left: 20px; padding-right: 20px;">
+
+              Our Web2.0 networking site contains a number of fascinating features that we’re sure you will love -
+
+            <ul style="font-size: 12px; color:#666; text-align:left; padding-left: 40px; padding-right: 20px;">
+
+              <li>Ability to build a detailed personal profile while retaining full control over privacy.</li>
+
+              <li>Ability to search for your friends on a insane number of attributes.</li>
+
+              <li>Ability to show your Flickr Pictures on the <%= SITE_NAME %> Site.</li>
+
+              <li>Ability to show your YouTube Videos on the <%= SITE_NAME %> Site.</li>
+
+              <li>Ability to create your own blog to share with <%= SITE_NAME %> Members.</li>
+
+              <li>Ability to show your Skype and Yahoo messenger status.</li>
+
+              <li>Ability to show your Twitter updates.</li>
+
+              <li>Ability to show your LinkedIn Profile.</li>
+
+              <li>Ability to show your RSS Feed.</li>
+
+              <li>Ability to follow , be followed and make friends with Alumni members.</li>
+
+              <li>Ability to private message and wall/scrap on walls.</li>
+
+              <li>Keep up with events and news from school.</li>
+
+              <li>Security to ensure that site provides access to Alumni members only.</li>
+
+              <li>Get notifications of Birthdays and Anniversaries.</li>
+
+              <li>And MUCH MUCH MORE!</li>
+            </ul>
+
+            <p style="font-size: 12px; color:#666; text-align:left; padding-left: 20px; padding-right: 20px;">
+
+              This will be the premier location for you to network with your mates from your alma mater, MSMSV.
+              We have resolved to keep the site updated with the latest Alumni events and other matters that concern the school and yourself. 
+            </p>
+
+             <p style="font-size: 12px; color:#666; text-align:left; padding-left: 20px; padding-right: 20px;">
+
+              A number of exciting new features will be introduced in the near future to keep up with the times and based on your feedback which you can provide directly at the click of a button.
+              We urge you to sign-up and build your detailed profile and log in often on the <%= SITE_NAME %> Online Social Networking app at <%= link_to SITE, home_url %>
+              <br/><br/><br/>
+              <%= render :partial => 'account_mailer/email_footer' %>
+            </p>
+          </td>
+        </tr>
+        <tr>
+
+          <td><%= image_tag("mail_bottom.gif", :alt => 'Thanks!', :width=>"483", :height=>"12") %></td>
+
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

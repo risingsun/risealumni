@@ -1,0 +1,11 @@
+<h1>Editing site_content</h1>
+<% form_for(@site_content,:url =>admin_site_content_path(@site_content),:html => {:method => :put, :class=>" "}) do |f| %>
+  <%= f.error_messages %>
+    <%= render :partial => "form", :locals => {:f => f} %>  
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', admin_site_content_path(@site_content) %> |
+<%= link_to 'Back', admin_site_contents_path %>

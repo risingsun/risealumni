@@ -1,0 +1,44 @@
+<div id="event_<%= event.id %>" class="widget_complete">
+  <span class="widget_complete_top"></span>
+  <h3 class="blog_head event_head_width">
+    <%= icon(event.organizers.first) %>
+    <%= link_to sanitize(event.title), 
+                admin_event_path(event) %>
+    <% if @p && @p.user && @p.user.is_admin?%>
+      <%= link_to image_tag('edit.png', :title => "Edit Event"), 
+                  edit_admin_event_path(event)%>
+      <%= link_to image_tag('delete.png', :title => "Delete Event"), 
+                  admin_event_path(event), 
+                  :method => :delete %>
+       <%= link_to image_tag("email_go.png", 
+                            :title => "Send Event", 
+                            :class => 'add_comment'), 
+                  send_event_mail_admin_event_path(event),
+                  :method => :post,
+                  :confirm => 'Are you sure? Do you want to send email to all users?' %>
+      
+    <%- end -%>
+    <div class="created_date">Hosted by <%= event.organizers.first.full_name%> at <%=event.updated_at.to_date.to_formatted_s(:rfc822) %> </div>
+  </h3>
+  <div class="forum_text">
+    <%= event.description%>
+    <div class="event_location">
+      <div class="event_start_date"><span class="event_address">Start Date : </span><%= event.start_date.to_date.to_formatted_s(:rfc822)if event.start_date%></div>
+      <div class="event_end_date"><span class="event_address">End Date : </span><%= event.end_date.to_date.to_formatted_s(:rfc822)if event.end_date%></div><br/>
+      <div><span class="event_address">Address :</span><br/><%= event.place%></div>
+    </div>
+  </div>
+  <% if @p && @p.user %>
+    <div class="poll_text">
+      <div class="poll_option" id="event_rsvp_<%= event.id%>" >
+        <% if event.responded? @p %>
+          <%= render :partial => 'admin/events/event_response',:locals => {:event => event}%>
+        <% else %>
+          <strong> RSVP:</strong><br/>
+          <%= render :partial => 'admin/events/rsvp',:locals => {:event => event,:status => 'home_page'}%>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+ <span class="widget_complete_btm"></span>
+</div>

@@ -1,0 +1,32 @@
+<%
+with_friending ||= false
+%>
+<div class="profile_card">
+  <div class="img_div">
+    <%= icon mini_profile, :small_60%>
+    <%= link_to image_tag('edit.png', :title => "Edit Profile", :class => "img01"), edit_profile_path(@p) if me(mini_profile) %>
+  </div>
+  <div class="text_div">
+    <h3 class="name"><%= link_to h(mini_profile.f(20)), mini_profile, :class => "profile_name" %></h3>
+    <p><%= year_link(mini_profile)%></p>    
+    <p><span id = "flink<%= mini_profile.id%>"> <%= get_friend_link @p, mini_profile if with_friending %></span></p>
+    <p><%= link_to 'Direct Message', direct_message_profile_messages_path(mini_profile) unless me(mini_profile)%></p>
+       <% if !me(mini_profile) && @p.has_wall_with(mini_profile) -%>
+         <p><%= link_to 'Our Wall-to-Wall', profile_comments_path(mini_profile) %></p>
+       <%- end -%>
+    <p><%= link_to('Read My Blogs', profile_blogs_path(mini_profile)) %></p>
+    <p><%= link_to('See My Polls', profile_polls_path(mini_profile)) %></p>
+    <p>
+      <span id = "alink<%= mini_profile.id%>"> 
+         <%= link_to_remote "#{ mini_profile.is_active ? 'Deactivate' : 'Activate' }", 
+                               {:url => admin_user_path(mini_profile), :method => :put, 
+                                 :loading => "processingTime('alink',#{mini_profile.id});", 
+                                 :complete => "processingCompleted('alink',#{mini_profile.id});"}, 
+                               {:id => mini_profile.dom_id('link')} if admin%>
+       </span>
+    </p>
+    <p>
+       <span  id="spinner_<%= mini_profile.id%>" style="display: none;"><%= image_tag('spinner.gif') %></span>
+    </p>
+  </div>
+</div>

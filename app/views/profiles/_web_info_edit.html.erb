@@ -1,0 +1,14 @@
+<% rounded_med_corner(:id => "address_details", :title => "Web Info") do %>
+  <%= p.labelled_text_field('Website', :website, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Blog', :blog, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Youtube Username',:youtube_username,:class => "youtube_icon input_text_with_icon",:wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Flickr Screen Name', :flickr_username,:class => "flickr_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('LinkedIn Name', :linkedin_name,:class => "linkedin_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Twitter Login', :twitter_username,:class => "twitter_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('AIM', :aim_name,:class => "aim_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('MSN', :msn_username,:class => "msn_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Yahoo Userid', :yahoo_name,:class => "yahoo_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('GTalk Name', :gtalk_name,:class => "gtalk_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Skype Name', :skype_name,:class => "skype_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Del.icio.us Name', :delicious_name,:class => "delicious_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)) %>
+<% end %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+ one:
+   profile: admin
+   event: event1
+   role: 'Organizer'
+
+ two:
+   profile: user1
+   event: event1
+   role: 'Attending'
+
+ three:
+   profile: user2
+   event: event1
+   role: 'Not Attending'
+
+ four:
+   profile: user
+   event: event1
+   role: 'May Be Attending'

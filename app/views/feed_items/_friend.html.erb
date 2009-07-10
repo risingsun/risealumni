@@ -1,0 +1,18 @@
+<%-
+#locals
+feed_item ||= @feed_item
+
+
+
+friendship = feed_item.item
+inviter = friendship.inviter
+invited = friendship.invited 
+-%>
+
+<div id="<%= feed_item.dom_id %>">
+  <div class="comments">
+    <img src="/images/add_new_friends.gif" title="Friends Icon" alt="Friends Icon" /> 
+    <strong><%= link_to h(inviter.full_name), inviter %> is now a <%= friendship.description inviter %> of <%= link_to h(invited.full_name), invited %>. </strong>
+  </div>
+  <%= x_feed_link(feed_item) if me %>
+</div>

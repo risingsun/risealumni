@@ -1,0 +1,33 @@
+<%
+#locals
+blog ||= @blog
+%>
+<div id = "blog">
+  <% if params[:preview_button]%>  
+    <%= render :partial => 'blogs/blog_preview', :locals => {:blog => @blog} %>
+  <% end %>
+  <% form_for [@profile, blog] do |f| %>
+    <% f.label_class = 'label_margin' %>
+    <%= f.labelled_text_field "Heading", :title, :title => "Title",:class => "big_text_field", :wrap_class => :row_complete %>
+    <%= f.labelled_text_area "Body", :body,:class => "big_text_area", :wrap_class => :row_complete_large %>
+   <p class ="poll_text">To include a youtube video use: [youtube: address_of_video] </p>
+    <%= f.labelled_text_field "Tags", :tag_list, :title => "Tags",:class => "big_text_field", :wrap_class => :row_complete %>
+    <div class="blog_text">Comma Seperated</div>
+    <input type="hidden" name=" " id="preview_button"/>
+    <div class = row_normal>
+      <% if @p.is_active%>
+        <div class="blog_check_box">
+          <%= check_box :blog, :public%> Public?
+        </div>
+      <%end%>
+    </div>
+    <div class="blog_btn_container">
+      <button class="buttons" type="submit">
+        <%= theme_image("save.png") %>
+      </button>
+      <button class="buttons" onclick="$('preview_button').name = 'preview_button'; this.form.submit();">
+        <%= theme_image("preview.png") %>
+      </button>
+    </div>
+  <% end %>
+</div>

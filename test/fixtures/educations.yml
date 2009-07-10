@@ -1,0 +1,29 @@
+# == Schema Information
+# Schema version: 2
+#
+# Table name: educations
+#
+#  id                  :integer(11)   not null, primary key
+#  profile_id          :integer(11)   
+#  highschool_name     :string(255)   
+#  education_from_year :string(255)   
+#  education_to_year   :string(255)   
+#  university          :string(255)   
+#  created_at          :datetime      
+#  updated_at          :datetime      
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+education:
+    profile: user
+    highschool_name: SMS
+    education_from_year: 2002   
+    education_to_year: 2006
+    university: JNU
+education1:
+    profile: user2
+    highschool_name: SMS
+    education_from_year: 2003   
+    education_to_year: 2007
+    university: JNU

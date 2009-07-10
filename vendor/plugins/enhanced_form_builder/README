@@ -1,0 +1,3 @@
+= Enhanced Form Builder
+
+This replaces the default form builder with a snazzy one that does all kinds of cool stuff like marking mandatory fields and errors in the actual labels.  Oh, and yeah, it does labels as well.

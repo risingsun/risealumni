@@ -1,0 +1,6 @@
+<h2>Search Results</h2>
+<%= render :partial  => "shared/mini_profile",
+           :collection => @results,
+           :locals => {:with_friending => true} %>
+<div class="clear_div"></div>
+<%= will_paginate @results %>

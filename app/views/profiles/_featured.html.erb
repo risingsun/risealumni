@@ -1,0 +1,14 @@
+<% cache 'featured_member',1.day.from_now do %>
+  <% profile = Profile.todays_featured_profile %>
+  <% profile && rounded_corner(:size => :small, 
+                               :title => image_tag("star.gif", 
+                                                   :class => "featured_mem") + 
+                                         "Featured Member") do %>
+    <div class="featured_mem_div">
+      <%= icon profile, :small_60, {:class => "featured_mem_pic"}, {:class => "featured_mem_text"}%>
+      <%= link_to profile.f(20), profile, :class => "featured_mem_text"  %><br />
+      (<%= profile.group%>)<br />
+      <div class="featured_mem_lower_text"><%= truncate(profile.about_me, :length => 90, :omission => "...")%></div>
+    </div>
+  <% end %>
+<% end %>

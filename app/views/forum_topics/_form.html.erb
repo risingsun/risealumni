@@ -1,0 +1,14 @@
+<%
+#locals
+topic ||= @topic || @forum.topics.build
+css_class ||= ''
+
+url = topic.new_record? ? forum_topics_url(topic.forum) : forum_topic_url(topic.forum,topic)
+%>
+<% form_for topic,:url =>url do |f| %>
+  <% f.label_class = 'label_margin' %>
+  <%= f.labelled_text_field "Title", :title, :title => "Title",:class => "big_text_field", :wrap_class => :row_complete_for_forum %>
+  <button class="buttons" type="submit">
+    <%= image_tag('save.png')%>
+  </button>
+<% end %>

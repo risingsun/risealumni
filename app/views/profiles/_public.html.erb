@@ -1,0 +1,163 @@
+<% if me or !@profile.default_status? %>
+  <div class="widget_large">
+    <span class="widget_lrg_top"></span>  
+    <%= slide_up_down_header('show','status_message','Status')%>
+    <div class="middle_panel_profile">
+      <div id="status_message">
+        <div class="slidecontent">
+          <h2>
+            <% if me %>
+              <%= status_in_place_editor %>
+            <% else %>
+              <%= @profile.status_message %>
+            <% end %>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <span class="widget_lrg_btm"></span>
+  </div>
+<% end %>
+
+<% cache "profile_#{@profile.id}/profile_#{@profile.id}" do %> 
+  <div class="widget_large" >
+    <span class="widget_lrg_top"></span>
+    <%= slide_up_down_header('hide','personal_info','Personal Info')%>
+    <div class="middle_panel_profile">
+      <div id="personal_info" style="display:none;">
+        <div class="slidecontent">
+          <%= render :partial => "personal_info"%>
+        </div>
+      </div>
+    </div>
+    <span class="widget_lrg_btm"></span>
+  </div>
+
+  <% if @profile.can_see_field("work_informations", @p) %>
+    <div class="widget_large" >
+      <span class="widget_lrg_top"></span>
+      <%= slide_up_down_header('hide','work_info','Work Info')%>
+      <div class="middle_panel_profile">
+        <div id="work_info" style="display:none;align:left;">
+          <div class="slidecontent">
+            <table width ="540px">
+              <tr align="left" valign="top">
+                <th>Company Name</th>
+                <th>Industry</th>
+                <th>Occupation</th>
+                <th>Job Description</th>
+                <th>Company Website</th>
+              </tr>
+              <%= render :partial => "work_info",:collection => @profile.work_informations %>
+            </table>
+          </div>
+        </div>
+      </div>
+      <span class="widget_lrg_btm"></span>
+    </div>
+  <% end %>
+
+  <% if @profile.can_see_field("educations", @p) %>
+    <div class="widget_large" >
+      <span class="widget_lrg_top"></span>
+      <%= slide_up_down_header('hide','education_info','Education Info')%>
+      <div class="middle_panel_profile">
+        <div id="education_info" style="display:none;">
+          <div class="slidecontent">
+            <table width ="540px">
+              <tr align="left" valign="top"> 
+                <th>From</th>
+                <th>To</th>
+                <th>University</th>
+              </tr>
+              <%= render :partial => "education_info",:collection => @profile.educations %>
+            </table>
+          </div>
+        </div>
+      </div>
+      <span class="widget_lrg_btm"></span>
+    </div>
+  <% end %>
+<% end %>
+<%= render :partial => 'profiles/recent_activity' %>
+<% cache "profile_#{@profile.id}/profile_page_blogs" do %>
+  <%= render :partial => 'blogs/list' %>
+<% end %>
+<%= render :partial => 'polls/list' %>
+<%= render :partial => 'forum_posts/list' %>
+
+<%= render :partial => 'comments/list',:locals => {:with_form => true, :with_wall_to_wall => true} %>  
+
+<% cache "profile_#{@profile.id}/profile_flickr_pics_and_video#{@profile.id}",EXPIRE_TIME_IN_MIN.minutes.from_now do %>     
+  <% unless @flickr.blank? %> 
+    <div class="widget_large">
+      <span class="widget_lrg_top"></span>
+      <%= slide_up_down_header('show','flickr_picture',"Latest Flickr Pictures: #{@profile.flickr_username}")%>
+      <div id="flickr_picture">
+        <div class="flickr_images">
+          <% @flickr.each do |f| %>
+            <%= flickr_link(f) %>
+          <% end %>
+        </div>
+      </div>
+      <span class="widget_lrg_btm"></span>
+    </div>
+  <% end %>
+  <%- if @video -%>
+    <div class="widget_large">
+      <span class="widget_lrg_top"></span>
+      <%= slide_up_down_header('show','youtube_video',"Latest YouTube Videos: #{@profile.youtube_username}")%>
+      <div id="youtube_video">
+        <%= @video.embed_html %>
+      </div>
+      <span class="widget_lrg_btm"></span>
+    </div>
+  <%- end -%>
+<% end %>
+
+<% if @profiles %>
+  <div class="widget_large">
+    <span class="widget_lrg_top"></span>  
+    <%= slide_up_down_header('show','google_map','Google Map')%>
+    <div class="middle_panel_profile">
+      <div id="google_map">
+        <div class="slidecontent">
+          <% content_for 'gmap' do %>
+            <%= GMap.header({:host => request.host}) %>
+            <%= javascript_include_tag("markerGroup") %>
+            <% show_map %>
+            <%= @map.to_html %>
+          <% end %>
+          <%= @map.div(:width => 525, :height => 400) %>
+        </div>
+      </div>
+    </div>
+    <span class="widget_lrg_btm"></span>
+  </div>
+<% end %>
+
+<% if @profile.can_see_field('delicious_name',@p) %>
+  <% rounded_corner(:title => "Del.icio.us Links: #{@profile.delicious_name}") do %>
+    <div class="middle_panel_profile delicious-posts" id="delicious_container">
+      <script type="text/javascript" src="http://del.icio.us/feeds/json/<%= @profile.delicious_name %>"></script>
+      <script type="text/javascript">
+        var ul = document.createElement('ul')
+        for (var i=0, post; post = Delicious.posts[i]; i++) {
+          var li = document.createElement('li')
+          li.className = 'delicious-post'
+          var a = document.createElement('a')
+          var img = document.createElement('img')
+          img.style.position = 'absolute'
+          img.style.display = 'none'
+          img.height = img.width = 16
+          a.setAttribute('href', post.u)
+          a.appendChild(document.createTextNode(post.d))
+          li.appendChild(img)
+          li.appendChild(a)
+          ul.appendChild(li)
+        }
+        document.getElementById('delicious_container').appendChild(ul)
+      </script>
+    </div>
+  <% end %>
+<% end %>

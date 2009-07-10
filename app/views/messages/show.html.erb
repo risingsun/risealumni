@@ -1,0 +1,7 @@
+<%
+#locals
+label ||= 'Reading a Message'
+@title = label
+%>
+
+<%= render :partial => "messages/message",:locals => {:message => @message} %>

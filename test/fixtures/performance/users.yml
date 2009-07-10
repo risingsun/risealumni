@@ -1,0 +1,39 @@
+# == Schema Information
+# Schema version: 14
+#
+# Table name: users
+#
+#  id                          :integer(11)   not null, primary key
+#  login                       :string(255)   
+#  crypted_password            :string(40)    
+#  salt                        :string(40)    
+#  created_at                  :datetime      
+#  updated_at                  :datetime      
+#  remember_token              :string(255)   
+#  remember_token_expires_at   :datetime      
+#  is_admin                    :boolean(1)    
+#  can_send_messages           :boolean(1)    default(TRUE)
+#  time_zone                   :string(255)   default("UTC")
+#  email_verification          :string(255)   
+#  email_verified              :boolean(1)    
+#  last_login_date             :date          
+#  first_referral_person_name  :string(255)   
+#  first_referral_person_year  :string(255)   
+#  second_referral_person_name :string(255)   
+#  second_referral_person_year :string(255)   
+#  third_referral_person_name  :string(255)   
+#  third_referral_person_year  :string(255)   
+#  additional_message          :text          
+#
+
+
+<% 1.upto(100) do |i| %>
+    id: <%= i%>
+    login: user<%= i%>
+    crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+    salt:  7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+    email_verification: eded0c94d92e49882b60bd5c4e6d9d9b19ec2597
+    email_verified: 1
+<% end %>
+
+

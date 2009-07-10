@@ -1,0 +1,16 @@
+<% form_for(:preference, :url => update_preferences_admin_preferences_path,:html =>{:method => :put}) do |f| %>
+  <h2 class="widget_title"><%= group(params[:id]) %></h2>
+  <% @preferences.each_with_index do|preference, index| %>
+    <% fields_for "preferences[#{index}]", preference do |f| %>
+      <%= hidden_field_tag "preferences[#{index}][id]" ,preference.id %>
+      <%= f.labelled_text_field "#{preference.preference_key}", :preference_value, :title => "Title",:class => "text_field", :wrap_class => :row_complete %>
+    <%end%>
+  <%end%>
+  <button class="buttons" type="submit">
+    <%= image_tag('Update.png')%>
+  </button>
+<%end%>
+
+
+
+

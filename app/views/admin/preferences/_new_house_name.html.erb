@@ -1,0 +1,6 @@
+<% form_for(:house_name, @house_name, :url => add_house_name_admin_preferences_path, :html =>{:method => :put}) do |t| %>
+  <%= t.labelled_text_field "Name", :name, :title => "Title",:class => "text_field", :wrap_class => :row_complete %>
+  <button class="buttons" type ="submit" >
+    <%= image_tag('save.png')%>
+  </button>
+<% end %>

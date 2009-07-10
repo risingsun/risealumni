@@ -1,0 +1,31 @@
+# located in config/templates/ferret_ctl.erb
+#!/bin/bash
+#
+# This script starts and stops the ferret DRb server
+# chkconfig: 2345 89 36
+# description: Ferret search engine for ruby apps.
+#
+# save the current directory
+CURDIR=`pwd`
+PATH=/usr/local/bin:$PATH
+
+RORPATH="<%= current_path %>"
+
+case "$1" in
+  start)
+     cd $RORPATH
+     echo "Starting ferret DRb server."
+     script/ferret_server start -e production
+     ;;
+  stop)
+     cd $RORPATH
+     echo "Stopping ferret DRb server."
+     script/ferret_server stop -e production
+    ;;
+  *)
+     echo $"Usage: $0 {start, stop}"
+     exit 1
+     ;;
+esac
+
+cd $CURDIR

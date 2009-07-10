@@ -1,0 +1,9 @@
+Hi Alumni Member (<%= @user.login %>),
+
+Thanks for signing up with <%= SITE_NAME_FULL %>!
+    
+Your username is '<%= @user.login %>'. 
+Your password is the same as what you used to create your user account.
+Just so we can confirm this is your real email, would you click this link?
+<%= confirm_email_url(@hash,@user_id) %>
+<%= render :partial => 'email_footer' %>

@@ -1,0 +1,8 @@
+<div class="profile_pic_panel">
+  <div class="profile_img_wrap"><%= icon(newest_member, :small_60 , {:class => "profile_pic_sml"}) %> </div>
+  <span class="<%= cycle('odd','even') %>">
+    <%= link_to h(newest_member.f(18)), newest_member %>
+    <br/><%= newest_member.group %>
+  </span>
+</div>
+  

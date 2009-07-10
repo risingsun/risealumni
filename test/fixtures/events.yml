@@ -1,0 +1,30 @@
+# == Schema Information
+# Schema version: 2
+#
+# Table name: events
+#
+#  id                    :integer(11)   not null, primary key
+#  start_date            :datetime      
+#  end_date              :datetime      
+#  title                 :string(255)   
+#  place                 :string(255)   
+#  type                  :string(255)   
+#  description           :text          
+#  first_contact_person  :string(255)   
+#  created_by            :integer(11)   
+#  created_at            :datetime      
+#  updated_at            :datetime      
+#  second_contact_person :string(255)   
+#  third_contact_person  :string(255)   
+#  fourth_contact_person :string(255)   
+#  fifth_contact_person  :string(255)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+ event1:
+   title: Alumni Meeting
+  

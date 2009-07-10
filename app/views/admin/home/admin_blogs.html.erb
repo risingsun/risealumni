@@ -1,0 +1,6 @@
+<% unless @blogs.blank?%>
+  <% @blogs.each do |blog| %>
+    <%= link_to blog.title, profile_blog_path(blog.profile, blog) %>
+    <%= link_to "Send this blog to all", send_admin_blog_path(blog)%>
+  <% end %>
+<% end %>

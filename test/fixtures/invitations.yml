@@ -1,0 +1,26 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+ one:
+   profile: user
+   email: aa.jpr@gmail.com
+   created_at: <%= Date.today %>
+   updated_at: <%= Date.today %>
+
+ two:
+   profile: user
+   email: xyz@yahoo.com
+
+ three:
+  profile: user
+  email: anu.jpr@gmail.com
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+
+ four:
+  profile: user
+  email: abc@gmail.com
+  created_at: <%= Date.today - 8 %>
+  updated_at: <%= Date.today - 8%>
+
+
+   

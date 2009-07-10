@@ -1,0 +1,21 @@
+<div class="forum_text" id="<%= post.dom_id%>" >
+  <div class="author_panel">
+    <%= icon post.owner %>
+    <div class="profile_links">
+      <div><strong><%=link_to(post.owner.f(18, :is_long => true), profile_path(post.owner))%></strong></div>
+      Location:
+      <%= location_link post.owner%> 
+      <div>Group:
+        <%= post.owner.group%>
+      </div>
+      <div>Posted:<%= post.created_at.to_date.to_formatted_s(:rfc822) %>
+      </div>
+    </div>
+  </div>
+  <div class="message_panel">
+    <div><%= post.body %></div>
+    <% if @u.is_admin? || owner(post)%>
+      <div class="delete_post"><%= link_to_remote "Delete Post", {:url => forum_topic_post_path(@forum, @topic, post), :confirm => 'Are you sure?', :method => :delete}, {:class=> "destroy", :id => "#{post.dom_id}_destroy_link"} %></div>
+    <% end %>
+  </div>
+</div>

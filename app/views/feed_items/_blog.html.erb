@@ -1,0 +1,13 @@
+<%
+#locals
+blog ||= feed_item.item
+%>
+
+<div id="<%= feed_item.dom_id %>">
+  <div class="comments">
+    <img src="/images/blog.gif" title="User Photo Icon"  alt="User Photo Icon" /> 
+    <strong><%= link_to h(blog.profile.full_name), blog.profile %> blogged <%= time_ago_in_words blog.created_at %> ago</strong><br />
+    <%= link_to sanitize(textilize(blog.title)), profile_blog_path(blog.profile, blog) %>
+  </div>
+    <%= x_feed_link(feed_item) if me %>    
+</div>

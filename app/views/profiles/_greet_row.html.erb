@@ -1,0 +1,7 @@
+<% if greet_row.can_see_field(field,@p)%>
+  <tr class="happy_days <%= klass %>_<%= cycle(:odd,:even) %>" >
+    <td><%= greet_row.send(field).to_formatted_s(:short) %></td> 
+    <td><%= image_tag("#{field}.png", :title=>title)%> </td> 
+    <td><%= link_to greet_row.full_name(:is_short => true), profile_path(greet_row) %></td>
+  </tr>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="education">
+   <% f.label_class = 'label_margin' %>
+   <%= f.labelled_text_field('From Year',:education_from_year ,:wrap_class => cycle(:row_light2, :row_dark2)) %>
+   <%= f.labelled_text_field('To Year',:education_to_year, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+   <%= f.labelled_text_field('Institution',:university, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+   <div class="<%= cycle(:row_light2, :row_dark2)%>">
+     <%= f.remove_link theme_image("remove.png")%>
+   </div>
+</div>
+

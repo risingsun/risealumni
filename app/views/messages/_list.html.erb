@@ -1,0 +1,42 @@
+<%-
+#locals
+list ||= @list
+page ||= "sent"
+-%>
+<div class="widget_large">
+  <span class="widget_lrg_top"></span>
+  <%= render :partial => "header_links"%>
+  <%- if list.empty? -%>
+    <div class="comments">No Message</div>
+  <%- else -%>
+    <% form_for :message, :url => delete_messages_profile_messages_path(@p), :html => {:id => "message_list"} do |f|%>
+      <% list.each do |m| mail_user = (@p == m.sender ? m.receiver : m.sender)%>
+        <div class="comments <%= unread_message_class(m, page)%>">
+          <input type="checkbox" name="check[]" value="<%=m.id%>" id="<%=m.id%>" class="left" />
+          <% if !m.system_message %>
+            <%= icon mail_user, :small_60, {:class => "featured_mem_pic"}, {:class => "featured_mem_text"}%>
+            <%= link_to mail_user.full_name,  mail_user, :class=>"messagebox_profilename_unread"%>
+          <% else %>
+            <span class="messagebox_profilename_unread"> <%= MAILER_TO_ADDRESS %></span>
+          <%- end -%>          
+          <span class="messagebox_date"><%= time_ago_in_words m.created_at %> ago</span>
+          <div class="messagebox_subject"><%= link_to h( m.subject), profile_message_path(@p,m) %></div>
+          <div class="messagebox_message_preview">
+            <%= truncate_html sanitize(textilize(m.body)), 40 %>
+          </div>
+        </div>
+        <%= link_to image_tag('delete.png', :class => 'delete'), profile_message_path(@profile, m), :method => :delete %>
+        
+      <% end %>
+      <div class="message_button_container">
+        <a href="javascript:;" class="buttons" onClick="checkUncheckAll_Messages(document.getElementById('message_list'),'yes');"><%= theme_image("select_all.png")%></a>
+        <button class="buttons" type="submit">
+          <%= theme_image("delete-selected.png") %>
+        </button>
+      </div>
+    <% end %>
+    <div class="clear_div"></div>
+    <%= will_paginate list %>
+  <%- end -%>
+  <span class="widget_lrg_btm"></span>
+</div>

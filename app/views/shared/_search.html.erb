@@ -1,0 +1,6 @@
+<% form_tag params[:controller].match(/admin/) ? admin_users_path : search_profiles_path, :method => :get do -%>
+  <%= text_field_tag 'search[q]', 
+    (params[:search] && params[:search][:q] ? @q : 'Search for Friends'), 
+    :id => 'search_q', :class => "search_textbox" %>
+  <button type="submit" class="search_btn"></button>
+<%- end -%>

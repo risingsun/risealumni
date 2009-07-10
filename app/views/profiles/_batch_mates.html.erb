@@ -1,0 +1,5 @@
+<% rounded_corner(:size => :small, 
+                  :title => "#{@profile.group} Group Members #{link_to 'See All', batch_mates_profile_path(@profile)}" ) do %>
+  <%= render :partial => 'profiles/newest_member', 
+             :collection => @profile.batch_mates(:per_page => 6, :page => 1) %>
+<% end %>

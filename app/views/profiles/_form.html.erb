@@ -1,0 +1,82 @@
+<% form_for @p, :html=>{:method=>:put, :multipart=>true, :class=>" "} do |p| %>
+  
+  <% p.label_class = 'label_margin' %>
+  <h2 class="edit_profile">Edit Profile</h2>
+    <button class="buttons" type="submit">
+      <%= theme_image('Update.png')%>
+    </button>
+  <div class="large_panel_side">
+    <% rounded_med_corner(:title => "Status", :id => "status") do %>
+      <span class="status"><%= status_in_place_editor %></span>
+    <% end %>
+    <%= render :partial => "general_info_edit",:locals =>{:p =>p}%>
+    <%= render :partial => "address_info_edit",:locals =>{:p =>p}%>
+    <% rounded_med_corner(:title => "Map Location", :id => "location_map") do %>
+      <% content_for 'gmap' do %>
+        <%= javascript_include_tag 'rs_maps' %>
+        <%= GMap.header({:host => request.host}) %>
+        <% @p.marker.nil? ? new_map : edit_map(@p.marker) %>
+        <%= @map.to_html %>
+      <% end %>
+      <%= @map.div(:width => 460, :height => 400) %>
+      <% @p.marker || @p.build_marker %>
+      <% p.fields_for @p.marker do |m|  %>
+        <%= m.hidden_field(:lat,:id=>'map_lat') -%>
+        <%= m.hidden_field(:lng,:id=>'map_lng') -%>
+        <%= m.hidden_field(:zoom,:id=>'map_zoom') -%>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="large_panel_side">
+    <%= render :partial => "web_info_edit",:locals => {:p =>p}%>
+    <% rounded_med_corner(:title => "Education", :id => "education_information") do %>
+      <div id="educations">
+        <%if @p.educations.blank?%>
+          <%= p.render_associated_form @p.educations, :new => 1 %>
+        <%else%>
+          <%= p.render_associated_form @p.educations %>
+        <% end %>
+      </div>
+      <%= p.hidden_field(:profile_name)%>
+      <div class="row_dark2">
+        <%= p.add_associated_link theme_image('add-button.png'), @p.educations.build %>
+      </div>
+    <% end %>
+    <% rounded_med_corner(:title => "Work Details", :id => "work_details") do %>
+      <div id ="work_informations">
+        <% if @p.work_informations.blank?%>
+          <%= p.render_associated_form @p.work_informations, :new => 1 %>
+        <% else %>
+          <%= p.render_associated_form @p.work_informations %>
+        <% end %>
+       </div>
+       <%= p.hidden_field(:profile_name)%>
+      <div class="row_light2">
+        <%= p.add_associated_link theme_image('add-button.png'),@p.work_informations.build%>
+      </div>
+    <% end %>
+    <% rounded_med_corner(:title => "Upload Icon", :id => "upload_photo") do %>
+      <%= p.labelled_file_field('Upload your Icon (&lt;=5Mb)',:icon,:class => "text_field" ,:wrap_class => :row_light2) %>
+      <% unless @p.icon_file_name.blank? %>
+        <div id="avatar_edit">
+          <span id="profile_icon_picture">
+            <%= icon @p %>
+            <%= link_to_remote 'delete icon', :url=>delete_icon_profile_path(@p), :confirm=>DELETE_CONFIRM  %>
+          </span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="clear_div"></div>  
+  <div class="large_btn_container">
+    <button class="buttons" type="submit">
+      <%= theme_image('Update.png')%>
+    </button>
+  </div>
+<% end %>
+
+
+
+
+

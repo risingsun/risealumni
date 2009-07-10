@@ -1,0 +1,8 @@
+
+<h2 class="widget_title"><%= @title.titlecase %></h2>  
+<% if @blogs.blank?%>
+  <span class="comments"><%= SITE_NOT_RECORD_MSG%></span>
+<%else%>
+  <%= render :partial => 'blogs/blog', :collection => @blogs %>
+<%end%>  
+ 

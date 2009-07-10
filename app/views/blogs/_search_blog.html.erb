@@ -1,0 +1,11 @@
+<div class="widget_small">
+  <span class="widget_small_top"></span>
+  <% form_tag  search_blog_path, :method => :get do %>
+    <%= text_field_tag 'search[blog]', 
+      (params[:search] && params[:search][:blog] ? params[:search][:blog] : 'Search Blogs'), 
+      :id => 'search_blog', :class => "search_blog_textbox" %>
+    <button type="submit" class="search_blog_bt"></button>
+  <%- end -%>
+  <div class="clear_div"></div>     
+  <span class="widget_small_btm"></span>
+</div>

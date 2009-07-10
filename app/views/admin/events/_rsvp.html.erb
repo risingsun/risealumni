@@ -1,0 +1,25 @@
+<%
+ pe = ProfileEvent.find(:first,:conditions => {:event_id => event.id,:profile_id => @p.id})
+ role = pe.role if pe
+ status ||= 'show_page'
+%>
+<form>
+  <div id="rsvp_<%= event.id%>">
+    <div><input type="radio" name="event_rsvp" value="Attending" <%=(role == 'Attending'|| role == 'Organizer')? 'checked=checked' : '' %> onclick="<%= remote_function(:url => rsvp_path(event.id,status),
+                                                                                                                                                                        :method =>:post,:with =>"'event_rsvp='+this.value",
+                                                                                                                                                                        :loading =>"$('spinner_#{event.id}').show();",
+                                                                                                                                                                        :complete =>"$('spinner_#{event.id}').hide();")%>">Attending</input></div>
+    <div><input type="radio" name="event_rsvp" value="Not Attending" <%= (role == 'Not Attending') ? 'checked=checked' : '' %> onclick="<%= remote_function(:url => rsvp_path(event.id,status),
+                                                                                                                                                            :method =>:post,:with =>"'event_rsvp='+this.value",
+                                                                                                                                                            :loading =>" $('spinner_#{event.id}').show();",
+                                                                                                                                                            :complete =>"$('spinner_#{event.id}').hide();")%>">Not Attending</input></div>
+    <div><input type="radio" name="event_rsvp" value="May Be Attending" <%= (role == 'May Be Attending') ? 'checked=checked' : '' %> onclick="<%= remote_function(:url => rsvp_path(event.id,status),  
+                                                                                                                                                                  :method =>:post,:with =>"'event_rsvp='+this.value",
+                                                                                                                                                                  :loading =>" $('spinner_#{event.id}').show();",
+                                                                                                                                                                  :complete =>"$('spinner_#{event.id}').hide()")%>">May Be Attending</input></div>
+                                                                                                                                                               
+     
+  </div>
+ 
+</form>
+<div  id="spinner_<%= event.id%>" style="display: none;"><%= image_tag('spinner.gif') %></div>

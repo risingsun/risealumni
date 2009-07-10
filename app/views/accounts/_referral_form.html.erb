@@ -1,0 +1,16 @@
+<%= f.labelled_text_field("Referral Person Name", :first_referral_person_name,
+                          :wrap_class => cycle(:row_light, :row_dark)) %>    
+<%= f.labelled_text_field("Referral Person Year", :first_referral_person_year, 
+                          :wrap_class => cycle(:row_light, :row_dark)) %>    
+<%= f.labelled_text_field("Referral Person Name", :second_referral_person_name, 
+                          :wrap_class => cycle(:row_light, :row_dark)) %>    
+<%= f.labelled_text_field("Referral Person Year", :second_referral_person_year, 
+                          :wrap_class => cycle(:row_light, :row_dark)) %>
+<%= f.labelled_text_field("Referral Person Name", :third_referral_person_name, 
+                          :wrap_class => cycle(:row_light, :row_dark)) %>    
+<%= f.labelled_text_field("Referral Person Year", :third_referral_person_year, 
+                          :wrap_class => cycle(:row_light, :row_dark)) %>    
+<%= f.labelled_text_area("Additional Message", :additional_message, 
+                         :cols => "200", :rows => "10", 
+                         :wrap_class => "#{cycle(:row_light, :row_dark)}_large" ) %>    
+<% cycle(:row_light, :row_dark) %>

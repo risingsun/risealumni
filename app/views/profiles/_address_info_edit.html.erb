@@ -1,0 +1,11 @@
+<% rounded_med_corner(:id => "contact_info", :title => "Contact Info") do %>
+  <%= p.labelled_text_field('Location', :location, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Address  Line1', :address_line1,:wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Address Line2', :address_line2, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('City', :city, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Postal Code', :postal_code, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('State', :state, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_country_select('Country', :country,["India"],:wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Landline', :landline, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Mobile', :mobile, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+<% end %>

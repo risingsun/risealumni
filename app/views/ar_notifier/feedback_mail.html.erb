@@ -1,0 +1,4 @@
+<%= @name + " (#{@email})" %> sent the following message :
+
+<%= @feedback.message %>
+<%= render :partial => 'account_mailer/email_footer' %>

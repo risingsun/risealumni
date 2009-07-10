@@ -1,0 +1,41 @@
+<% if  @user.facebook_uid %>
+  <%= f.labelled_text_field('',:facebook_uid,:class => "hidden")%>
+  <%= f.labelled_text_field('',:email_verified,:class => "hidden")%>
+  <%= f.labelled_text_field('',:email_verification,:class => "hidden")%>
+<%else%>
+  <%= f.labelled_text_field("Login", :login,
+    :onBlur => "checkLogin()", :title => "Login",
+    :wrap => {:id => "login_div",
+      :class => cycle(:row_light, :row_dark)},
+    :error_div => {:id => "login_msg" }) %>
+  <%= f.labelled_password_field("Password", :password,
+    :title => "",
+    :wrap_class => cycle(:row_light, :row_dark)) %>
+  <%= f.labelled_password_field("Confirm Password", :password_confirmation,:class => 'mandotry_field',
+    :wrap_class => cycle(:row_light, :row_dark)) %>
+<% end %>
+<% f.fields_for 'profile_attributes', @profile do |p|  %>
+  <% p.label_class = 'label_margin' %>
+  <% p.include_errors_color_in_field = true %>
+  <% p.mandatory_class_for_text_field = 'mandotry_field' %>
+  <%= p.labelled_text_field("Email", :email,
+    :onBlur => "checkEmail();",
+    :wrap_class => cycle(:row_light, :row_dark),
+    :error_div => {:id=>"email_msg"}) %>
+  <%= p.labelled_text_field("First Name", :first_name,
+    :wrap_class => cycle(:row_light, :row_dark)) %>
+  <%= p.labelled_text_field("Middle Name", :middle_name,
+    :wrap_class => cycle(:row_light, :row_dark)) %>
+  <%= p.labelled_text_field("Last Name", :last_name,
+    :wrap_class => cycle(:row_light, :row_dark)) %>
+  <%= p.labelled_collection_select('Gender', :gender, Profile::GENDER_FIELDS,
+    :first, :first,
+    {:wrap_class => cycle(:row_light, :row_dark)}, :include_blank => true) %>
+  <%= p.labelled_text_field("Maiden Last Name", :maiden_name, :title => 'Name before marriage',
+    :wrap_class => cycle(:row_light, :row_dark)) %>
+  <%= p.labelled_collection_select("Groups", :group, GROUPS.reject{|obj| GROUPS.first==obj},
+    :first, :first,
+    {:wrap_class => cycle(:row_light, :row_dark)}, :include_blank => true)%>
+
+
+<% end %>

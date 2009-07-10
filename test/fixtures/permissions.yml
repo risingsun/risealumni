@@ -1,0 +1,39 @@
+# == Schema Information
+# Schema version: 2
+#
+# Table name: permissions
+#
+#  id         :integer(11)   not null, primary key
+#  profile_id :integer(11)   
+#  field      :string(255)   
+#  permission :string(255)   default("Friends")
+#  created_at :datetime      
+#  updated_at :datetime      
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+permission1:
+    profile: user
+    field: website
+    permission: Myself
+
+permission2:
+    profile: user
+    field: blog
+    permission: Everyone
+
+permission3:
+    profile: user
+    field: email
+    permission: Friends
+
+permission4:
+    profile: user
+    field: date_of_birth
+    permission: Myself
+
+permission5:
+    profile: user2
+    field: educations
+    permission: Everyone

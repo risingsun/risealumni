@@ -1,0 +1,9 @@
+<% rounded_corner(:title => @title.titleize) do %>
+  <% unless @results.blank?%>
+    <%= render :partial  => "shared/mini_profile", :collection => @results, :locals => {:with_friending => true}%>    
+  <%else%>
+    <span class="comments"><%= SITE_NOT_RECORD_MSG%></span>
+  <%end%>
+  <div class="clear_div"></div>     
+  <%= will_paginate @results%>   
+<% end %>

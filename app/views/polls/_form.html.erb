@@ -1,0 +1,10 @@
+<% p.label_class = 'label_margin' %>
+<%= p.labelled_text_field "Enter the poll question?", :question, :wrap_class => cycle(:row_light2, :row_dark2),:class=>'poll_input_text' %>
+<div id="poll_options">
+  <%if @poll.poll_options.blank?%>
+    <%= p.render_associated_form @poll.poll_options, :new => 6 %>
+  <%else%>
+    <%= p.render_associated_form @poll.poll_options,:new =>6-@poll.poll_options.count %>
+  <% end %>
+</div>
+

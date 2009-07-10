@@ -1,0 +1,47 @@
+<% content_for :head do%>
+  <%= auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments") %>
+  <%= auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members") %>
+<% end %>
+
+
+<%if @blurb_image.blank?%>
+  <% cache 'blurb' do %>
+    <%= render :partial => 'blurb' %>
+  <% end %>
+<%else%>
+  <div  class="widget_large">
+    <span class="widget_lrg_top"></span>
+    <div class=" blurb_image_div">
+      <div class="blurb_image_head">
+        <div>
+          <%= SITE_NAME_FULL %>
+        </div>
+      </div>
+      <div class="blurb_image_footer">
+        <div>
+          <%= link_to("About The School",page_path(:about_us)) %> | <%= link_to("Feedback",new_feedback_path) %> |
+          <%= link_to("Contact Us",page_path(:contact)) %>| <%= link_to("Credits",page_path(:credits)) %> | <%= link_to("Forums",forums_path) %>
+        </div>
+      </div>
+      <div class="image_cycle">
+        <% @blurb_image.each do |photo| %>
+          <%= image_tag(photo.image.url,:class=>"image_on_blurb") %>
+        <%end%>
+      </div>
+    </div>
+    <span class="widget_lrg_btm"></span>
+  </div>
+<%end%>
+<% unless @home_data.blank? %>
+  <% @home_data.each do|d|%>
+    <% if d.class.name == 'Event'%>
+      <%= render :partial => 'shared/event', :locals => {:home_page_event => true,:event => d} %>
+    <% elsif d.class.name == 'Poll'%>
+      <%= render :partial => 'polls/poll',:locals => {:home_page_blog => true,:poll => d}%>
+    <% else %>
+      <%= render :partial => 'blogs/blog',:locals => {:blog => d} %>
+    <% end %>
+  <% end %>
+  <div class="clear_div"></div>
+  <%= will_paginate @home_data %>
+<% end %>

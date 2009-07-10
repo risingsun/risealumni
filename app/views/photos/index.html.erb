@@ -1,0 +1,18 @@
+<div id="column_l">
+  <h2 class="page_title"><%= SITE_NAME %> <%=page_title(@blurb_image).pluralize%>
+    <%= link_to image_tag('add_new_post.png',
+      :title=> "Create New #{page_title(@blurb_image)}",
+      :class=>"add_new_post2"),
+      new_photo_path.add_param(:blurb_image => @blurb_image) if @u.is_admin?%>
+  </h2>
+  <% if @photos.empty? %>
+    <div class="widget_large">
+      <div class="comments"><%= SITE_NAME %> has no <%=page_title(@blurb_image).pluralize%>.</div>
+      <span class="widget_lrg_btm"></span>
+    </div>
+  <% else %>
+    <%= render :partial => 'photos/photo', :collection => @photos %>
+    <div class="clear_div"></div>
+    <%= will_paginate @photos%>
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+<tr>
+  <%= f.hidden_field(:field)%>
+  <td>
+    <%= permission.field.to_s.titleize%>
+  </td>
+  <td>
+    <%= f.radio_button(:permission, "Myself")%>
+  </td>
+  <td>
+    <%= f.radio_button(:permission, "Friends")%>
+  </td>
+  <td>
+    <%= f.radio_button(:permission, "Everyone")%>
+  </td>
+</tr>

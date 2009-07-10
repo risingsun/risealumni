@@ -1,0 +1,14 @@
+<%
+#locals
+post ||= @post || @topic.posts.build
+css_class ||= ''
+
+%>
+<%= error_messages_for :post %>
+<% form_for(post, :url => forum_topic_posts_url(post.topic.forum, post.topic)) do |f| %>
+  <% f.label_class = 'label_margin' %>
+  <%= f.labelled_text_area "Post By Followup", :body,:class=>:post_text_area_width, :for=>:followup_post_body ,:wrap_class => :row_complete_large_for_post %>
+  <button class="buttons" type="submit">
+    <%= image_tag('post.png')%>
+  </button>
+<% end %>

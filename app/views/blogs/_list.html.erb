@@ -1,0 +1,31 @@
+
+  <%-
+  #locals
+  profile ||= @profile
+  size ||= BLOGS_ON_PROFILE
+  blogs ||= profile.blogs.find :all, :limit => size
+
+
+  total = profile.blogs.count
+  -%>
+
+  <% unless blogs.empty? %>
+    <div class="widget_large">
+      <span class="widget_lrg_top"></span>
+      <%= slide_up_down_header('show','blogs_info',
+                        "Most Recent Blog Posts<span> (latest #{blogs.size } of #{total > size ? link_to( total, profile_blogs_path(profile)) : total})</span>")%>
+      <div id="blogs_info">
+        <div class="complete_middle_panel">
+          <% blogs.each do |b| %>
+            <div class='comments'>
+              <img src='/images/blog.gif'/>
+              <%= link_to b.title, profile_blog_path(@profile, b) %>
+              posted at <%= b.updated_at.to_datetime.to_formatted_s(:rfc822) %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <span class="widget_lrg_btm"></span>
+    </div>
+  <% end %>
+

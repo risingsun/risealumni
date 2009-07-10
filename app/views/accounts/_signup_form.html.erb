@@ -1,0 +1,42 @@
+<% rounded_corner(:title => "Sign-up Now" + image_tag("help.png", :title => "Help", :class => "help")) do %>
+  <div class="edit_panel_profile" id="login_form">
+    <% remote_form_for(:user, 
+                       @user, 
+                       :loading => "$('login_form').hide(); $('load').show();", 
+                       :success => "$('login_form').show(); $('load').hide();", 
+                       :url => signup_path, 
+                       :method => :post) do |f| %>
+      <% f.label_class = 'label_margin' %>
+      <% f.include_errors_color_in_field = true %>
+      <% f.mandatory_class_for_text_field = 'mandotry_field' %>
+      <div id="user_form">
+        <%= render :partial => "user_form", :locals => {:f => f} %>
+      </div>
+      <div id="referral_error"></div>
+      <div id="referral_form" style="display: none;">
+        <%= render :partial => "referral_form", :locals => {:f => f} %>
+      </div>
+      <% unless @user.facebook_uid || @test || @development %>
+        <div class="<%= cycle(:row_light, :row_dark) %>">
+          <%= captcha_field_with_options(:user, 
+                                         {:class => "text_field mandotry_field"}, 
+                                         {:class => "label_margin"})%>
+          <div class="error"><%= @user.errors[:captcha]%></div>
+        </div>
+      <% end %>
+      <div class=<%= cycle(:row_light, :row_dark)%> id="tos">
+        <%= check_box :user, :terms_of_service, {:checked => "checked"}%>
+        <%= link_to "Please Accept The Terms of Service",page_path('tos'), :popup => ['Terms of Service','height =600, width =500, scrollbars=yes']%>        
+        <div class="error"><%= @user.errors[:terms_of_service]%></div>
+      </div>
+      <div class="large_btn_container2" id="signup">
+        <button class="buttons" type="submit">
+          <%= theme_image("sign-me-up.png") %>
+        </button>
+      </div>
+    <% end %>
+  </div>
+  <div id="load" class="signup_form edit_panel_profile" style="display: none;">
+    <%= theme_image("barloader.gif", :class => "ajax_loader") %>
+  </div>
+<% end %>

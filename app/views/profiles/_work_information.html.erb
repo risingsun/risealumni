@@ -1,0 +1,11 @@
+<div class="work_information">
+  <% f.label_class = 'label_margin' %>
+  <%= f.labelled_text_field('Occupation',:occupation, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= f.labelled_text_field('Industry',:industry, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= f.labelled_text_field('Company Name',:company_name, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= f.labelled_text_field('Company Website',:company_website, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= f.labelled_text_area('Job Description',:job_description, :wrap_class => "row_light_large2") %>
+  <div class="<%= cycle(:row_light2, :row_dark2)%>">
+    <%= f.remove_link theme_image("remove.png") %>
+  </div>
+</div>

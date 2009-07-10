@@ -1,0 +1,12 @@
+<% form_for(@photo,:html=>{:multipart=>true}) do |f| %>
+  <%= f.error_messages %>
+  <% rounded_corner(:title => "New photo upload") do %>
+    <%= f.labelled_file_field('Upload your Image (&lt;=5Mb)',:image,:class => "text_field" ,:wrap_class => cycle(:row_light2, :row_dark2)) %>
+    <%= f.labelled_text_field "Caption", :caption, :wrap_class => cycle(:row_light2, :row_dark2) %>
+    <%= f.labelled_text_field('',:set_as_blurb,:class => "text_field hidden")%>
+    <button class="buttons" type ="submit" >
+      <%= theme_image("save.png") %>
+    </button>
+  <%end%>
+<% end %>
+

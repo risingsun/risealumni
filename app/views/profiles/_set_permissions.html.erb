@@ -1,0 +1,14 @@
+<% form_for @p, :html=>{:method=>:put, :class=>" "} do |f| %>
+  <% rounded_med_corner(:id => "set_permissions", :title => "Permissions", :button => 'update-permissions.png') do %>
+    <table class="permission_table">
+      <tr>
+        <td> &nbsp;</td>
+        <td>Just Me</td>
+        <td>My Friends</td>
+        <td>Everyone</td>
+      </tr>     
+      <%= f.render_associated_form(@p.profile_permissions) %>
+    </table>
+  <% end %>
+  <input type="hidden" name="switch" value="permissions" />
+<% end %>

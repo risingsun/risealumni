@@ -1,0 +1,3 @@
+<% cache cache_message_name(@profile,"inbox") do%>
+  <%= render :partial=>'messages/list', :locals=>{:list=> @p.received_messages.paginate(:per_page =>BLOGS_PER_PAGE, :page => params[:page]), :page => "inbox"} %>
+<% end %>

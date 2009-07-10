@@ -1,0 +1,34 @@
+<% if params[:profile_id] || @show_profile_side_panel %>
+  <%= render :partial => "profiles/bio" %>
+  <%= render :partial => "shared/profile_actions" unless me %>
+  <%= render :partial => "shared/friend_list" %>
+  <%= render :partial => "profiles/batch_mates" %>
+<%else%>
+  <% unless params[:controller]== 'accounts' && params[:action]== 'login'%>
+    <% if @u.nil? or @u.new_record? or !@u.email_verified %>
+      <%= render :partial => "shared/login_page", :local => {:user => User.new}%>
+      <%= render :partial => "shared/fbconnect_page"%>
+    <% end %>
+  <% end %>
+  <% cache 'recent_members',5.minutes.from_now do %>
+    <% rounded_corner(:title => 'Newest Members', :size => 'small') do %>
+      <%= render :partial => 'profiles/newest_member', :collection => Profile.new_members.all %>
+    <% end %>
+  <% end %>
+  <% cache 'app_flickr_pics',SITE_FLICKR_EXPIRE_TIME_MIN.minutes.from_now do %>
+    <% unless sets_flickr_pictures.blank?  && unsets_flickr_pictures.blank?%>
+      <% rounded_corner(:title => "#{SITE_NAME} Picture Gallery", :size => 'small') do %>
+        <ul id="mycarousel" class="jcarousel-skin-ie7">
+          <% sets_flickr_pictures.each do |f|%>
+            <li>
+              <%= sets_pictures_link(f,'s') %>
+              <span class="flickr_text"><%= flickr.photosets.getInfo(f).title%></span>
+            </li>
+          <% end %>
+        </ul>
+      <%end%>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render :partial => "profiles/find_batch_details" if @p %>

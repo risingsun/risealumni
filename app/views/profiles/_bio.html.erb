@@ -1,0 +1,61 @@
+<%
+profile ||= @profile
+%>
+
+<% rounded_corner(:size => :small, :title => 'Profile') do %>
+  <div class="profile_div">
+    <%= icon profile, :big %>
+    <h2><%= h profile.f(18, :is_long => true) %></h2>
+    <div class="profile_links">
+      <strong>Location:</strong>
+      <%= location_link profile %>
+    </div>
+    <% if profile.can_see_field("yahoo_name", @p) %>
+      <div class="profile_links">
+        <%= yahoo_status(profile.yahoo_name) %>
+      </div>
+    <% end %>
+    <% if profile.can_see_field("skype_name", @p) %>
+      <div class="profile_links">
+        <%= skype_status(profile.skype_name) %>
+      </div>
+    <% end %>
+    <% if profile.can_see_field("msn_username", @p) %>
+      <div class="profile_links">
+        <%= msn_status(profile.msn_username) %>
+      </div>
+    <% end %>
+    <% if profile.can_see_field("gtalk_name", @p) %>
+      <div class="profile_links">
+        <strong>GTalk:</strong>
+        <a href="xmpp:<%= h profile.gtalk_name %>"><%=h profile.gtalk_name %></a>
+      </div>
+    <% end %>
+    <% if profile.can_see_field("website", @p) %>
+      <div class="profile_links">
+        <strong>Website:</strong>
+        <%= link_to h(profile.website), h(profile.website) %>
+      </div>
+    <% end %>
+    <% if profile.can_see_field("blog", @p)%>
+      <div class="profile_links">
+        <strong>Blog:</strong>
+        <%= link_to h(profile.blog), h(profile.blog) %>
+      </div>
+    <% end %>
+
+    <% if profile.can_see_field("linkedin_name", @p)%>
+      <div class="profile_links">
+        <%= linkedin_badge(profile.linkedin_name) %>
+      </div>
+    <% end %>
+    <% if me %>
+      <div class="profile_links">
+        <%= link_to 'My Greetings Calendar', 
+                    alumni_friends_events_path(:ics) %>
+        <br/>
+        <%= link_to "Send Invites", new_profile_invitation_path(@p), :method => :get %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

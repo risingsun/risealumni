@@ -1,0 +1,10 @@
+<%= @p.first_name%> sent you a message.
+
+
+
+"<%=@message.body%>"
+
+To read this message, follow the link below:
+<%= reply_message_profile_message_url(@message.receiver,@message) %>
+
+<%= render :partial => 'account_mailer/email_footer' %>

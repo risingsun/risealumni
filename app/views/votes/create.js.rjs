@@ -1,0 +1,6 @@
+if @vote.valid?
+  page.replace_html "poll_option_#{@option.poll.id}", :partial => 'polls/poll_response', :locals => {:poll => @option.poll}
+else
+  page.alert("Error! #{@vote.errors.full_messages.join(', ')}")
+  page.select('table.poll.loading').invoke('removeClassName', 'loading')
+end

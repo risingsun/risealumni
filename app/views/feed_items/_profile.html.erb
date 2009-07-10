@@ -1,0 +1,12 @@
+<%
+#locals
+profile = feed_item.item
+%>
+
+<div id="<%= feed_item.dom_id %>">
+  <div class="comments">
+    <img src="/images/add_new_friends.gif" title="Profile Icon" alt="Profile Icon" /> 
+    <strong><%= link_to h(profile.full_name), profile %> has updated their profile </strong><br />
+  </div>
+    <%= x_feed_link(feed_item) if me %>    
+</div>

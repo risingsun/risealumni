@@ -1,0 +1,22 @@
+<%
+#locals
+comments ||= @comments
+parent ||= @parent
+profile ||= @profile
+
+@count = comments.total_entries
+%>
+
+
+<% content_for :head do  -%>  
+  <%= auto_discovery_link_tag(:rss, profile_comments_url(@profile, :rss), :title=>"Wall to wall with #{profile.full_name}") %>
+<% end -%>
+
+
+<% rounded_corner(:title => 'Wall-to-Wall') do %>
+  <%= render :partial => 'comments/form' %>
+  <div id="<%= "#{dom_id(parent)}_comments" %>">
+    <%= render :partial => 'comments/comment', :collection => comments %>
+    <div><%= will_paginate comments%></div>
+  </div>
+<% end  %>

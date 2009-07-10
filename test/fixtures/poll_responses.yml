@@ -1,0 +1,14 @@
+poll_response1:
+  profile: user
+  poll: poll_1       
+  poll_option: option1
+
+poll_response2:
+  profile: user2
+  poll: poll_1       
+  poll_option: option2
+
+poll_response3:
+  profile: user3
+  poll: poll_1       
+  poll_option: option3

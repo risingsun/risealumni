@@ -1,0 +1,41 @@
+
+# == Schema Information
+# Schema version: 1
+#
+# Table name: profiles
+#
+#  id               :integer(11)   not null, primary key
+#  user_id          :integer(11)
+#  first_name       :string(255)
+#  last_name        :string(255)
+#  website          :string(255)
+#  blog             :string(255)
+#  flickr           :string(255)
+#  about_me         :text
+#  aim_name         :string(255)
+#  gtalk_name       :string(255)
+#  ichat_name       :string(255)
+#  icon             :string(255)
+#  location         :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  email            :string(255)
+#  is_active        :boolean(1)
+#  youtube_username :string(255)
+#  flickr_username  :string(255)
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+<% 1.upto(100) do |i| %>
+    id: <%= i%>
+    user_id: <%= i %>
+    first_name: De
+    last_name: Veloper<%= i %>
+    email: user<%= i %>@example.com
+    year: 200<%= i%>
+    icon: user.png
+    is_active: true
+    youtube_username: fff
+    flickr_username: ttt
+<% end %>
+

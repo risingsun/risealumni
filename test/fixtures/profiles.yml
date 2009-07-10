@@ -1,0 +1,179 @@
+# == Schema Information
+# Schema version: 2
+#
+# Table name: profiles
+#
+#  id                         :integer(11)   not null, primary key
+#  user_id                    :integer(11)   
+#  first_name                 :string(255)   
+#  last_name                  :string(255)   
+#  website                    :string(255)   
+#  blog                       :string(255)   
+#  flickr                     :string(255)   
+#  about_me                   :text          
+#  aim_name                   :string(255)   
+#  gtalk_name                 :string(255)   
+#  ichat_name                 :string(255)   
+#  icon                       :string(255)   
+#  location                   :string(255)   
+#  created_at                 :datetime      
+#  updated_at                 :datetime      
+#  email                      :string(255)   
+#  is_active                  :boolean(1)    
+#  youtube_username           :string(255)   
+#  flickr_username            :string(255)   
+#  group                      :string(255)   
+#  date_of_birth              :date          
+#  anniversary_date           :date          
+#  relationship_status        :string(255)   
+#  spouse_name                :string(255)   
+#  maiden_name                :string(255)   
+#  gender                     :string(255)   
+#  activities                 :text          
+#  yahoo_name                 :string(255)   
+#  skype_name                 :string(255)   
+#  status_message             :string(255)   
+#  occupation                 :string(255)   
+#  industry                   :string(255)   
+#  company_name               :string(255)   
+#  company_website            :string(255)   
+#  job_description            :text          
+#  address_line1              :string(255)   
+#  address_line2              :string(255)   
+#  postal_code                :string(255)   
+#  city                       :string(255)   
+#  state                      :string(255)   
+#  country                    :string(255)   
+#  landline                   :string(255)   
+#  mobile                     :string(255)   
+#  professional_qualification :string(255)   
+#  default_permission         :string(255)   default("Everyone")
+#  middle_name                :string(255)   
+#  linkedin_name              :string(255)   
+#  msn_username               :string(255)   
+#  twitter_username           :string(255) 
+#  blood_group                :string(255)
+#
+
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+user:
+    user: user
+    first_name: De
+    last_name: Veloper
+    email: user@example.com
+    group: 2006
+    mobile: 9352262626
+    blood_group : O-
+    is_active: true
+    icon_file_name: user.png
+    youtube_username: arunagw
+    flickr_username: arunagw
+    gender: Male
+    date_of_birth: 1985-12-31
+    anniversary_date: 2008-05-22
+    about_me: gud person
+    default_permission: Everyone
+
+user2:
+    user: user2
+    title: Mr.
+    first_name: John
+    middle_name: Mathew
+    last_name: Jones
+    email: user2@example.com
+    group: 2005
+    is_active: true
+    gender: Male
+    date_of_birth: 1986-01-06
+    default_permission: Myself
+
+user3:
+    user: user3
+    first_name: Rashmi  
+    last_name:  gupta
+    maiden_name: Yadav
+    group: 2006
+    email: user3@example.com
+    gender: Female
+
+inactive:
+    user: inactive
+    first_name: Bob
+    last_name: Jones
+    email: inactive@example.com
+    group: 2006
+    is_active: false
+    gender: Male
+
+cant_message:
+    user: cant_message
+    email: cant_message@example.com
+    group: 2006
+    is_active: true
+    gender: Male
+
+
+admin:
+    user: admin
+    first_name: Agent
+    last_name: Smith
+    email: admin@example.com
+    group: 2004
+    is_active: true
+    gender: Male
+
+deleted:
+  user: deleted
+  email: deleted@ldjf.com
+  is_active: false
+  gender: Male
+
+user4:
+    user: user4
+    first_name: rays
+    last_name: Jones
+    email: user4@example.com
+    group: 2005
+    is_active: true
+    status_message: i am at work
+    location: jaipur
+    gender: Male
+
+user5:
+    user: user5
+    first_name:
+    last_name: saxena
+    email: anuraag.jpr@gmail.com 
+    is_active: true
+    group: 2006
+    gender: male
+
+user6:
+    user: user6
+    first_name: a'ag
+    last_name: s'na
+    email: anurag_royal2007@yahoo.co.in 
+    is_active: true
+    group: 2006
+    gender: male
+
+user7:
+    user: user7
+    first_name: Rinki
+    last_name: Sharma
+    email: rinki.@gmail.com  
+    group: 2006
+    gender: Female
+    is_active: true
+
+user8:
+    user: user8
+    first_name: Rays
+    last_name: Sharma
+    email: rays.@gmail.com  
+    group: 2006
+    gender: Female
+    is_active: true
+

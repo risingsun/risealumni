@@ -1,0 +1,18 @@
+<div class="widget_large">
+  <span class="widget_lrg_top"></span>  
+  <h2 class="widget_lrg_title" >Google Map</h2>
+  <div class="middle_panel_profile">
+    <div id="google_map">
+      <div class="slidecontent">
+        <% content_for 'gmap' do %>
+          <%= GMap.header({:host => request.host}) %>
+          <%= javascript_include_tag("markerGroup") %>
+          <% show_map %>
+          <%= @map.to_html %>
+        <% end %>
+        <%= @map.div(:width => 525, :height => 400) %>
+      </div>
+    </div>
+  </div>
+  <span class="widget_lrg_btm"></span>
+</div>

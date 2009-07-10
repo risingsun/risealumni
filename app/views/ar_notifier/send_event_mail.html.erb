@@ -1,0 +1,9 @@
+Hi <%= @profile.full_name %>
+
+<h3><%= @event.title %></h3>
+<p><%= @event.description %></p>
+<p>Where: <%= @event.place %></p>
+<p>Start Date: <%= @event.start_date.to_datetime.to_formatted_s(:rfc822)if @event.start_date %><p/>
+<p>End Date: <%= @event.end_date.to_datetime.to_formatted_s(:rfc822)if @event.end_date %></p>
+<p>Hosted by: <%= @event.organizers.first.full_name %></p>
+<%= render :partial => 'account_mailer/email_footer' %>

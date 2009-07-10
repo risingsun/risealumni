@@ -1,0 +1,14 @@
+<p>
+  <b>Parent:</b>
+  <%=h @site_content.parent_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @site_content.name %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_admin_site_content_path(@site_content) %> |
+<%= link_to 'Back', admin_site_contents_path %>

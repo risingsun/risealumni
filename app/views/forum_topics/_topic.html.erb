@@ -1,0 +1,8 @@
+<div class="forum_text">
+  <%=image_tag('topic.png')%>
+  <div class="topic_title "><%= link_to h(topic.title), forum_topic_path(@forum, topic) %></div>
+  <div class="topic_starter_name"><%= link_to(topic.owner.f, profile_path(topic.owner))%></div>
+  <div class="forum_details"><%= topic_details(topic)%></div>
+  <div class="forum_post"><%= topic_last_post_info topic%></div>
+</div>
+

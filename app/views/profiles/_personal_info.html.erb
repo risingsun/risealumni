@@ -1,0 +1,25 @@
+<table>
+<%= show_field(@profile.group, @profile , "group")%>
+<%= show_field(@profile.house_name, @profile , "house_name")%>
+<%= show_field(@profile.gender, @profile , "gender")%>
+<%= show_field(@profile.blood_group, @profile , "blood_group")%>
+<%= show_field(@profile.date_of_birth_formatted, @profile , "date_of_birth")%>
+<%= show_field(@profile.address, @profile, 'address')%>
+<%= show_field(@profile.landline, @profile , "landline")%>
+<%= show_field(@profile.mobile, @profile , "mobile")%>
+<%= show_field(@profile.relationship_status, @profile , "relationship_status")%>
+<%= show_field(@profile.maiden_name, @profile , "maiden_name")%>
+<%= show_field(@profile.spouse_name, @profile , "spouse_name")%>
+<%= show_field(@profile.anniversary_date_formatted, @profile , "anniversary_date")%>
+<%= show_field(@profile.professional_qualification, @profile , "professional_qualification")%>
+</table>
+
+<% if !@profile.about_me.blank? && @profile.can_see_field("about_me", @p)%> 
+  <h3>About</h3>
+  <p><%= sanitize(textilize(@profile.about_me)) %></p>
+<% end %>
+<% if !@profile.activities.blank? && @profile.can_see_field("activities", @p)%>
+  <h3>Activities</h3>
+  <p><%= @profile.activities %></p>
+<% end %>
+

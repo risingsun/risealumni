@@ -1,0 +1,6 @@
+Dear <%= @profile.first_name.titlecase %>,
+
+We wish you and your spouse <%= @profile.spouse_name.titlecase + ' ' unless @profile.spouse_name.blank? %>a very very Happy Anniversary!
+Hope you have a wonderful day today and we wish you a prosperous and peaceful year ahead.
+
+<%= render :partial => 'account_mailer/email_footer' %>

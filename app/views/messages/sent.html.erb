@@ -1,0 +1,3 @@
+<% cache cache_message_name(@profile,"sent") do%>
+  <%= render :partial=>'messages/list', :locals=>{:list=>@p.sent_messages.paginate(:per_page =>BLOGS_PER_PAGE, :page => params[:page]), :label=>'Sent Messages'} %>
+<% end %>

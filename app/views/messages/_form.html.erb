@@ -1,0 +1,40 @@
+<%
+#locals
+message ||= @message
+message ||= Message.new params[:message]
+to_list ||= @to_list
+to_list ||= [@profile] #used on someone's profile page
+hide_header ||= false
+
+unless message.new_record?
+  message.subject = "RE: " + message.subject
+  message.body = "\n\n\n\n\n\n\n\n\n" + message.body.gsub(/^/, '> ')
+end
+%>
+
+<div class="widget_large">
+  <span class="widget_lrg_top"></span>  
+  <% unless hide_header %>
+    <%= render :partial => "header_links"%>
+  <% end %>
+  <% form_for :message, :url => profile_messages_path(@p) do |f| %>
+    <% f.label_class = 'label_margin'  %>
+    <div class="row_complete">
+      <label for="message_to">To</label>
+      <%= to_list.to_select :message, 
+                            :receiver_id, 
+                            :selected=>(params[:message][:receiver_id].to_i rescue ''), 
+                            :name => :full_name, 
+                            :class => "big_text_field", 
+                            :title => "To List" %>
+    </div>
+    <%= f.labelled_text_field "Subject", :subject, :title => "Subject",:class => "big_text_field" ,:wrap_class => "row_complete" %>
+    <%= f.labelled_text_area "Body", :body, :title => "Body",:class => "big_text_area",:wrap_class => "row_complete_large" %>
+    <div class="blog_btn_container">
+      <button class="buttons" type="submit">
+        <%= theme_image("send-message.png") %>
+      </button>
+    </div>
+  <% end %>
+  <span class="widget_lrg_btm"></span>
+</div>

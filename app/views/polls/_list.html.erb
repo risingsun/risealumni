@@ -1,0 +1,30 @@
+<%-
+#locals
+profile ||= @profile
+size ||= POLLS_ON_PROFILE
+polls ||= profile.polls.find :all, :limit => size
+
+
+total = profile.polls.count
+-%>
+
+<% unless polls.empty? %>
+  <div class="widget_large">
+    <span class="widget_lrg_top"></span>
+    <%= slide_up_down_header('show','polls_info',
+                        "Most Recent Polls<span> (latest #{polls.size } of #{total > size ? link_to( total, profile_polls_path(profile)) : total})</span>")%>
+    <div id="polls_info">
+      <div class="complete_middle_panel">
+        <% polls.each do |p| %>
+          <div class='comments'>
+            <img src='/images/poll_icon.png'/>
+            <%= link_to p.question, profile_poll_path(@profile, p) %>
+            written <%= time_ago_in_words p.created_at %> ago
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <span class="widget_lrg_btm"></span>
+  </div>
+<% end %>
+

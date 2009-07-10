@@ -1,0 +1,14 @@
+<%
+sent = params[:action]=='sent'
+new = params[:action] == 'new'
+inbox = params[:action] == "index"
+%>
+<h2 class="widget_lrg_title">
+<div class="message_header_links">
+  <%= inbox ? "Inbox" : "#{link_to "Inbox", profile_messages_path(@p)}"%> 
+  <span class="grey">| </span>
+  <%= sent ? "Sent" : "#{link_to "Sent", sent_profile_messages_path(@p)}"%>
+  <span class="grey">|</span> 
+  <%= new ? "New Message" : "#{link_to "New Message", new_profile_message_path(@p)}"%>
+</div>
+</h2>

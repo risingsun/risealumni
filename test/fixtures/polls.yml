@@ -1,0 +1,12 @@
+poll_1:
+  question: Why do you like ruby?
+  status: 1            
+  profile: user
+  public: 1       
+  votes_count: 3
+poll_2:
+  question: Why do girls like more ?
+  status: 1            
+  profile: user2
+  public: 1       
+  votes_count: 0

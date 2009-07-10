@@ -1,0 +1,19 @@
+<%- 
+#locals
+feed_items ||= @feed_items 
+
+-%>
+
+<%- unless feed_items.empty? -%>
+  <div class="widget_large">
+    <span class="widget_lrg_top"></span>
+    <%= slide_up_down_header('show','recent_activities','Recent Activity')%>
+    <div id="recent_activities">
+      <% feed_items.each do |feed_item| %>
+          <% next unless feed_item.item %>
+          <%= render( :partial => "feed_items/#{feed_item.partial}", :locals => {:feed_item => feed_item}) %>
+      <% end %>
+    </div>
+    <span class="widget_lrg_btm"></span>
+  </div>
+<%- end -%>

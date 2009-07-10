@@ -1,0 +1,6 @@
+<% content_for :head do  -%>
+  <%= auto_discovery_link_tag :rss, profile_url(@profile, :rss), :title=>"#{@profile.full_name}'s recent activity" %>
+  <%= auto_discovery_link_tag :rss, profile_blogs_url(@profile, :rss), :title=>"#{@profile.full_name}'s Blogs" %>
+<% end -%>
+
+<%= render :partial => "profiles/public" %>

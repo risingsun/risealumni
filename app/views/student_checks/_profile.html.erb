@@ -1,0 +1,15 @@
+<div id="profile_field">
+  <% fields_for "student_check" , @student_check do |f|%>
+    <p>
+      <%= f.label :profile %><br />
+      <%= f.collection_select(:profile_id, 
+                              Profile.batch_names(year), 
+                              :id, 
+                              :full_name, 
+                              :include_blank => true)%>
+      <br/>
+      <br/>
+    </p>
+  <%end%>
+</div>
+

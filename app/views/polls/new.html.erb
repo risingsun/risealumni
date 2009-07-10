@@ -1,0 +1,15 @@
+<% rounded_corner(:title => "New Poll") do %>
+  <% form_for @poll, :url => profile_polls_path(@p), :html => {:method=>:post, :class=>" "} do |p| %>
+    <%= render :partial => 'form',:locals =>{:p => p} %>
+    <div class = row_normal>
+      <% if @p.is_active%>
+        <div class="poll_check_box">
+          <%= check_box :poll, :public%> Public?
+        </div>
+      <%end%>
+    </div>
+    <button class="buttons" type ="submit" >
+      <%= theme_image("save.png") %>
+    </button>
+  <% end %>
+<% end %>

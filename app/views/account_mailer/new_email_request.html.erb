@@ -1,0 +1,8 @@
+Hi <%= @name %>,
+
+It seems that you requested us to change your email. You can verify this email address by clicking on the link below.
+
+<%= update_email_url(@user_verification,@profile)%>
+
+If you did not request an email change, please ignore this email.
+<%= render :partial => 'email_footer' %>

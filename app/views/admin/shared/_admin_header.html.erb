@@ -1,0 +1,9 @@
+<div class="admin_panel_main_links">
+  <%= link_to "Events", admin_events_path%> | <%= link_to "Feedbacks", feedbacks_path%> | <%= link_to "Blogs", admin_blogs_path %> 
+  | <%= link_to "Greetings", events_path %> | <%= link_to "Student Checks", student_checks_path %> | <%= link_to "Announcement", announcements_path %> 
+  | <%= link_to "Users", admin_users_path %> | <%= link_to "Site Content", admin_site_contents_path %>
+  | <%= link_to "Preferences", admin_preferences_path %>
+  | <%= link_to "Google Map Locations", google_map_locations_path%>
+  | <%= link_to "Photos", photos_path.add_param(:blurb_image=> false) %>
+  | <%= link_to "Blurb Images", photos_path.add_param(:blurb_image=> true) %>
+</div>

@@ -1,0 +1,19 @@
+<% content_for :head do  -%>
+  <%= auto_discovery_link_tag :rss, profile_polls_url(@profile, :rss), :title=>"#{@profile.full_name}'s Polls" %>
+<% end -%>
+<div id="column_l">
+  <h2 class="page_title"><%= @profile.full_name %>'s Polls
+    <%= link_to image_tag('add.png',:title=>"Create New poll"),       
+                  new_profile_poll_path(@profile) if me %></h2>
+
+  <% if @polls.empty? %>
+    <div class="widget_large">
+      <div class="comments"><%= @profile.full_name %> has no polls .</div>
+      <span class="widget_lrg_btm"></span>
+    </div>
+  <% else %>
+    <%= render :partial => 'polls/poll', :collection => @polls %>
+    <div class="clear_div"></div> 
+    <%= will_paginate @polls%>
+  <% end %>
+</div>

@@ -1,0 +1,32 @@
+<% f.label_class = 'label_margin' %>
+<%= f.labelled_text_field "Title", :title, :wrap_class => cycle(:row_complete_light, :row_complete_dark) %>
+<%= f.labelled_text_field "Place", :place, :wrap_class => cycle(:row_complete_light, :row_complete_dark) %>
+<div class="<%= cycle(:row_complete_light, :row_complete_dark)%>">
+  <label for="event_start_date" class="label_margin">Start Date</label>
+  <%= calendar_date_select_tag "event[start_date]",(@event.start_date ? @event.start_date : nil) , :embedded => false, :time => :mixed, :class => "text_field" %>
+</div>
+<div class="<%= cycle(:row_complete_light, :row_complete_dark)%>">
+  <label for="event_end_date" class="label_margin">End Date</label>
+  <%= calendar_date_select_tag "event[end_date]",(@event.end_date ? @event.end_date : nil) , :embedded => false, :time => :mixed, :class => "text_field" %>
+</div>
+<%= f.labelled_text_area "Description", :description,:class => "large_text_area", :wrap_class => cycle(:row_complete_light_large2, :row_complete_dark_large2) %>
+<div class="<%= cycle(:row_complete_light_large2, :row_complete_dark_large2)%>">
+  <label class="label_margin"> Location </label>
+  <div class ="gmap">
+    <% content_for 'gmap' do %>
+      <%= javascript_include_tag 'rs_maps' %>
+      <%= GMap.header({:host => request.host}) %>
+      <% @event.marker.nil? ? new_map : edit_map(@event.marker) %>
+      <%= @map.to_html %>
+    <% end %>
+    <%= @map.div(:width => 460, :height => 400) %>
+    <% @event.marker || @event.build_marker %>
+    <% f.fields_for @event.marker do |m|  %>
+      <%= m.hidden_field(:lat,:id=>'map_lat') -%>
+      <%= m.hidden_field(:lng,:id=>'map_lng') -%>
+      <%= m.hidden_field(:zoom,:id=>'map_zoom') -%>
+    <% end %>
+  </div>
+</div>
+ 
+      

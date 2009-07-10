@@ -1,0 +1,16 @@
+<% form_for :preference, @preference, :url => admin_preferences_path, :html => {:method=>:post} do |f| %>
+  <h2 class="widget_title"><%= group(params[:id]) %></h2>
+  <div class = "preference_text">
+    <%= hidden_field_tag "preference[preference_group_id]" ,params[:id] %>
+    <% f.label_class = 'label_margin' %>
+    <%= f.labelled_text_field "Name", :preference_key, :title => "Title",:class => "text_field", :wrap_class => :row_complete %>
+    <%= f.labelled_text_field "Value", :preference_value, :title => "Title",:class => "text_field", :wrap_class => :row_complete %>
+    <%= f.labelled_text_field "Type", :field_type, :title => "Title",:class => "text_field", :wrap_class => :row_complete %>
+  </div>
+  <button class="buttons" type ="submit" >
+    <%= image_tag('save.png')%>
+  </button>
+<% end %>
+             
+ 
+  

@@ -1,0 +1,18 @@
+<% 
+  blog_hash = Blog.blog_groups
+  title = "Blog Archive" 
+%>
+
+<% rounded_corner(:size => :small, :title => title) do %>
+  <table class="greetings">
+    <tbody>
+    <% blog_hash.each do |b| %>  
+      <tr>
+        <td><%= link_to "#{b.month} #{b.year}", blog_archive_path(b.month,b.year) %></td>
+        <td>(<%= b.cnt%>)</td>
+        <td>&nbsp;</td>
+      </tr>
+     <% end %>
+     </tbody>
+  </table> 
+<% end %>

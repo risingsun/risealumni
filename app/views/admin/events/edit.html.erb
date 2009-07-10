@@ -1,0 +1,14 @@
+<div class="widget_complete">
+  <span class="widget_complete_top"></span>
+  <h2 class="widget_compelete_title">Edit Event</h2>
+  <% form_for(@event,:url =>admin_event_path(@event),:html => {:method => :put, :class=>" "}) do |f| %>
+    <%= render :partial => 'form',:locals => { :f => f } %>
+    <div>
+      <button class="buttons gmap" type="submit">
+        <%= theme_image("Update.png") %>
+      </button>
+    </div>
+  <% end %>
+  <span class="widget_complete_btm"></span>
+</div>
+

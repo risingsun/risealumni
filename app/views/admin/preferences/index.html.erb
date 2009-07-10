@@ -1,0 +1,28 @@
+
+<% @preferences_groups.each do|preference_group| %>
+  <div class="widget_large">
+    <span class="widget_lrg_top"></span>
+    <div class ="admin_class">
+      <div id ='preference_group<%= preference_group.id %>'>
+        <h2 class="widget_title"><%= preference_group.group.titlecase %></h2>  
+        <% preference_group.preferences.each do |preference| %>
+          <div id ='preference' class="preference">
+            <div class = "preference_key"><%= preference.preference_key.titlecase%> </div>  
+            <div class="preference_value"><%= preference.preference_value %> </div>  
+            <%= link_to_remote image_tag('delete.png'), :url => admin_preference_path(preference.id), 
+                                                          :method => :delete %>
+          </div>    
+        <%end%>
+        <%= link_to_remote image_tag('add-button.png',:title => "Add"),  
+                                                      :url => new_preference_admin_preference_path(preference_group),
+                                                      :method =>:get%>                 
+        <%= link_to_remote 'Edit', :url => edit_preferences_admin_preference_path(preference_group),
+                                   :method =>:get unless preference_group.preferences.blank? %>             
+      </div> 
+    </div> 
+    <div class="clear_div"></div>     
+    <span class="widget_lrg_btm"></span>
+  </div>
+<% end %>
+<%= render :partial => "title" %>
+<%= render :partial => "house_name" %>

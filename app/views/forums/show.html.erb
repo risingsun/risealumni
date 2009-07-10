@@ -1,0 +1,39 @@
+<div class="forum_links"> 
+  <%= link_to "Back to Forums", forums_path %>
+</div>
+<div class="widget_complete">
+  <span class="widget_complete_top"></span>
+  <h3 class="forum_head">
+    <div class="froum_page_title"><%= sanitize(@forum.name)%></div>
+    <% if @u.is_admin? %>
+      <%= link_to image_tag('edit.png', :title => "Edit forum"), 
+                  edit_forum_path(@forum)%>
+      <%= link_to image_tag('delete.png', :title => "Delete forum"), 
+                  forum_path(@forum), 
+                  :method => :delete %>
+    <% end %>
+  </h3>
+  <div class="forum_text"><%=@forum.description%></div>
+  <div class="clear_div"></div>
+  <span class="widget_complete_btm"></span>
+</div>
+<div class="new_toipc_button buttons">
+  <%= link_to(image_tag('new-topic.png', :title => "New Topic"),new_forum_topic_path(@forum),:title => "Start a new topic")%>
+</div>
+<div class="widget_complete">
+  <span class="widget_complete_top"></span>
+  <% if @topics.blank? %>
+    <h2 class="widget_compelete_title">New Forum Topic</h2>
+    <%= render :partial => 'forum_topics/form' %>
+  <%else %>
+    <h3 class="forum_head"> Topics
+      <span class="topic_starter">Topic Starter</span>
+      <span class="posts">Posts</span>
+      <span class="last_post">Last Post</span>
+    </h3>
+    <%= render :partial => 'forum_topics/topic', :collection => @topics%>
+  <% end %>
+  <%= will_paginate @topics %>
+  <span class="widget_complete_btm"></span>
+</div> 
+

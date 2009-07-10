@@ -1,0 +1,26 @@
+<%-
+profile ||= @profile
+with_form ||= false
+with_wall_to_wall ||= false
+
+comments ||= @comments
+@count = comments.total_entries
+
+parent ||= @parent
+parent = @blog || @profile || nil
+-%>
+  
+<div class="widget_large" id="comment">
+  <span class="widget_lrg_top"></span>
+  <%= slide_up_down_header('show','user_comments',
+                           "Comments #{link_to '(Our Wall-to-Wall)', 
+                           profile_comments_path(profile) if @p && with_wall_to_wall && !me && @p.has_wall_with(profile)}")%>
+  <div id="user_comments">
+    <%= render :partial => 'comments/form' if with_form && @p %>
+    <div id="<%= "#{dom_id(parent)}_comments" %>">
+      <%= render :partial => 'comments/comment', :collection => comments %>
+    </div>
+    <%= will_paginate @comments%>
+  </div>
+  <span class="widget_lrg_btm"></span>
+</div>

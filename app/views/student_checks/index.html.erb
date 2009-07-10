@@ -1,0 +1,64 @@
+<% rounded_corner(:title => "Student Checks") do %>
+  <%BATCH_RANGE.each do |b|%>
+   <%= link_to(b, student_checks_path().add_param(:year => b)) %>
+  <%end%>
+  <%= link_to("All", student_checks_path.add_param(:all => "all")) %>
+  <br /><br />
+  <%=  display_alpha_index(StudentCheck.alpha_index) unless @student_checks.blank? %>
+  <br /><br />
+  <%= link_to image_tag("user_add.png", 
+                        :title => 'New Student Check', 
+                        :alt => 'New Student Check'), 
+              new_student_check_path %>
+  <%= link_to image_tag("lightning_go.png", 
+                        :title => 'Send Invite to All', 
+                        :alt => 'Send Invite to All'), 
+              send_bulk_invite_student_checks_path, 
+              :method => :post, :confirm => 'Send email to ALL?' %>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Profile</th>
+      <th>Delete</th>
+      <th>Invite</th>
+    </tr>
+    <% for st in @student_checks %>
+       <% for student_check in st[1]%>
+        <tr id=<%= "#{st[0].first.upcase}_div" %>>
+          <td><%= link_to student_check.full_name, edit_student_check_path(student_check) %></td>
+          <td><%=h student_check.year %></td>
+          <% if student_check.profile %>
+            <td>
+              <%= link_to(image_tag("user_orange.png",
+                                    :title => student_check.profile.full_name,
+                                    :alt => student_check.profile.full_name),
+                          profile_path(student_check.profile)) %>
+            </td>
+          <% else %>
+            <td></td>
+            <td>
+              <%= link_to image_tag("cross.png",
+                                    :title => 'Delete',
+                                    :alt => 'Delete'),
+                          student_check_path(student_check),
+                          :method => :delete, :confirm => 'Are you sure?' %>
+            </td>
+            <td>
+              <%= link_to image_tag("email_go.png",
+                                    :title => 'Invite',
+                                    :alt => 'Invite'),
+                          send_invite_student_check_path(student_check),
+                          :method => :post,
+                          :confirm => 'Send Invitation email?' unless  student_check.emails.blank? %>
+            </td>
+          <% end %>
+        </tr>
+      <%end%>
+    <% end %>
+  </table>
+
+  <br />
+
+  <%= link_to image_tag("user_add.png", :title => 'New Student Check', :alt => 'New Student Check'), new_student_check_path %>
+<% end %>

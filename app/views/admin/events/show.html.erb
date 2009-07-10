@@ -1,0 +1,67 @@
+<div class="widget_large" id="event_<%= @event.id %>" >
+  <span class="widget_lrg_top"></span>
+  <h3 class="blog_head">
+    <%= icon(@event.organizers.first) %>
+    <%= link_to sanitize(@event.title), 
+                admin_event_path(@event) %>
+    <%- if @u&& @u.is_admin? -%>
+      <%= link_to image_tag('edit.png', :title => "Edit Event"), 
+                  edit_admin_event_path(@event)%>
+      <%= link_to image_tag('delete.png', :title => "Delete Event"), 
+                  admin_event_path(@event), 
+                  :method => :delete %>
+     <%= link_to image_tag("email_go.png", 
+                            :title => "Send Event", 
+                            :class => 'add_comment'), 
+                  send_event_mail_admin_event_path(@event),
+                  :method => :post,
+                  :confirm => 'Are you sure? Do you want to send email to all users?' %>
+    <%- end -%>
+    <div class="created_date">Hosted by <%= @event.organizers.first.full_name%> at <%=@event.updated_at.to_date.to_formatted_s(:rfc822) %> </div>
+  </h3>
+  <div class="blog_text">
+    <%= @event.description %>
+  </div>
+  <div class="blog_text">
+    <div>
+      <div class="event_data"><b>Start Date:</b></div>
+      <div class="event_value"><%= @event.start_date.to_datetime.to_formatted_s(:rfc822)if @event.start_date %></div>
+    </div>
+    <div>
+      <div class="event_data"><b>End Date:</b></div>
+      <div class="event_value"><%= @event.end_date.to_datetime.to_formatted_s(:rfc822)if @event.end_date %></div>
+    </div>
+    <div>
+      <div class="event_data"><b>Location:</b></div>
+      <div class="event_value"><%= @event.place %></div>
+    </div>
+  </div>
+  <div class="blog_text">
+    <% if @event.marker%>
+      <% content_for 'gmap' do %>
+          <%= GMap.header({:host => request.host}) %>
+          <%= javascript_include_tag("markerGroup") %>
+          <% show_event_map%>
+          <%= @map.to_html %>
+      <% end %>
+      <%= @map.div(:width => 525, :height => 400) %>
+    <% end %>
+  </div>
+  <div id="<%= dom_id(@event) %>_comment_div">
+    <% remote_form_for :comment, :url => admin_event_comments_path(@event), :html => {:id => "#{dom_id(@event)}_comment_form"} do |f| %>
+      <%= f.text_area :comment, :class => "textarea", :id => "#{dom_id(@event)}_comment_area" %>
+      <div class="comment_btn_container">
+        <button class="buttons" type="submit">
+          <%= theme_image("add-comment.png") %>
+        </button>
+      </div>
+      <%end%>
+      <div id="<%= dom_id(@event) %>_comments">
+        <%= render :partial => 'comments/comment', :collection => @comments %>
+      </div>
+      <div class="clear_div"></div>     
+       <%= will_paginate @comments%>
+    <span id="<%= dom_id(@event) %>_comment_messages"></span>
+  </div>
+  <span class="widget_lrg_btm"></span>
+</div>

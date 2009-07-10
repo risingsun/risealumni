@@ -1,0 +1,37 @@
+<% cache cache_name(type,@profile) do%>  
+  <% 
+  profile ||= @profile
+  type ||= 'friends'
+  size ||= 6
+  list = profile.send(type).find(:all, :limit => size, :order => 'RAND()') rescue []
+  total = profile.send(type).count
+  with_friending ||= false
+  title = type == 'followings' ? 'Following' : type
+  if type == "followings"
+    link =  followings_profile_path(@profile)
+  elsif type == "followers"
+    link =  followers_profile_path(@profile)
+  else
+    link =  profile_friends_path(@profile)
+  end
+  see_all = (list.size < total) ? link_to("See All", link) : ""
+  %>
+
+  <%- unless list.empty? -%>
+    <% rounded_corner(:size => :small, 
+                      :title => title.titleize + " " + see_all) do  %>
+      <div>
+        <% list.each do |p| %>
+          <div class="profile_pic_panel">
+          <div><%= icon(p, :small_60 , {:class => "profile_pic_sml"}) %> </div>
+          <span class="<%= cycle('odd','even') %>">
+            <%= get_friend_link @p, p if with_friending %>
+            <%= link_to h(p.f(18)), p%>
+            <%= p.group %>
+          </span>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <%- end -%>
+<% end %>

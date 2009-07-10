@@ -1,0 +1,51 @@
+<% rounded_corner(:title => 'Student Checks Update/Create') do %>
+  <% form_for(@student_check) do |f| %>
+    <%= f.error_messages %>
+
+    <p>
+      <%= f.label :first_name %><br /><br /><br />
+      <%= f.text_field :first_name %>
+    </p>
+    <p>
+      <%= f.label :middle_name %><br />
+      <%= f.text_field :middle_name %>
+    </p>
+    <p>
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %>
+    </p>
+    <p>
+      <%= f.label :year %><br />
+      <%= select_tag "student_check[year]",
+                     options_for_select((BATCH_RANGE).inject([]){ |ar , d| ar << d.to_s },
+                     selected = @student_check.year.to_s), 
+                     :onchange => remote_function(
+                                    :url => view_year_students_student_checks_path,
+                                    :method => :get ,
+                                    :with => "'year=' + this.value ")%><br />
+    </p>
+    
+    <%= render :partial => 'profile', :locals => {:year => @student_check.year , 
+                                                  :student_check => @student_check }%>
+    
+    <p>
+      <%= f.label :email %><br />
+      <%= f.text_field :e_mail_1 %>
+    </p>
+    <p>
+      <%= f.label :alt_email %><br />
+      <%= f.text_field :e_mail_2 %>
+    </p>
+    <p>
+      <%= f.submit "Update and Return" %>
+      <%= f.submit "Update and Add Another" %>
+      <%= f.submit "Update and Edit" %>
+    </p>
+    <% unless @student_check.new_record? %>
+      <p>
+        <%= link_to image_tag("cross.png", :title => 'Delete', :alt => 'Delete'), student_check_path(@student_check), :method => :delete  %>
+        <%= link_to image_tag("email_go.png", :title => 'Invite', :alt => 'Invite'), send_invite_student_check_path(@student_check), :method => :post unless @student_check.emails.empty? %>
+      </p>
+    <% end %>
+  <% end %>
+<% end %>

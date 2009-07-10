@@ -1,0 +1,26 @@
+<% rounded_corner(:title => 'Birthdays') do %>
+
+  <% birthdays = Profile.birthdays %> 
+  <% birthdays.keys.sort.each do |month| %>
+    <b><%= Date::MONTHNAMES[month] %></b>
+    <ul id="student_check_list">
+      <% birthdays[month].each do |b|  %>
+        <li><%= b.date_of_birth.to_formatted_s(:rfc822) %> : <%= b.full_name %> (<%= b.group %>)</li>
+      <% end %>
+    </ul>
+    <div class="clear_div"></div>
+  <% end %>
+<% end %>
+
+<% rounded_corner(:title => 'Anniversaries') do %>
+  <% anniversaries = Profile.anniversaries %> 
+  <% anniversaries.keys.sort.each do |month| %>
+    <b><%= Date::MONTHNAMES[month] %></b>
+    <ul id="student_check_list">
+      <% anniversaries[month].each do |b|  %>
+        <li><%= b.anniversary_date.to_formatted_s(:rfc822) %> : <%= b.full_name %> (<%= b.group %>)</li>
+      <% end %>
+    </ul>
+    <div class="clear_div"></div>
+  <% end %>
+<% end %>

@@ -1,0 +1,93 @@
+# == Schema Information
+# Schema version: 2
+#
+# Table name: student_checks
+#
+#  id          :integer(11)   not null, primary key
+#  name        :string(255)   
+#  first_name  :string(255)   
+#  middle_name :string(255)   
+#  last_name   :string(255)   
+#  birth_date  :date          
+#  sex         :string(255)   
+#  f_name      :string(255)   
+#  m_name      :string(255)   
+#  f_desg      :string(255)   
+#  m_desg      :string(255)   
+#  r_add1      :string(255)   
+#  r_add2      :string(255)   
+#  r_add3      :string(255)   
+#  o_add1      :string(255)   
+#  o_add2      :string(255)   
+#  o_add3      :string(255)   
+#  o_ph_no     :string(255)   
+#  r_ph_no     :string(255)   
+#  mobile      :string(255)   
+#  enroll_no   :string(255)   
+#  year       :string(255)   
+#  roll_no     :string(255)   
+#  classname   :string(255)   
+#  house_name  :string(255)   
+#  profile_id  :integer(11)   
+#  created_at  :datetime      
+#  updated_at  :datetime      
+#  e_mail_1    :string(255)   
+#  e_mail_2    :string(255)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+  student1:  
+    name: De Veloper
+    first_name: De
+    last_name: Veloper
+    year: 2006
+    roll_no: 111
+    house_name: Earth
+    enroll_no: '02/3510'
+    f_desg: engineer
+    e_mail_1: rays.rashmi@gmail.com
+    e_mail_2: rashmi14yadav@gmail.com
+
+  student2:  
+    name: Rashmi Yadav
+    first_name: Rashmi
+    last_name: Yadav
+    year: 2006
+    roll_no: 111
+    house_name: Earth
+    enroll_no: '02/3510'
+    f_desg: engineer
+
+  student3:  
+    name: John Jones
+    first_name: John
+    last_name: Jones
+    year: 2005
+    roll_no: 111
+    house_name: Earth
+    enroll_no: '02/3510'
+    f_desg: engineer
+
+  student4:  
+    name: Rohit Yadav
+    first_name: Rohit
+    last_name: Yadav
+    year: 1997
+    roll_no: 111
+    house_name: Earth
+    enroll_no: '02/3510'
+    f_desg: engineer
+
+  student5:  
+    name: Rinki Sharma
+    first_name: Rinki
+    last_name: Sharma
+    year: 2006
+    roll_no: 112
+    house_name: Earth
+    enroll_no: '02/3510'
+    f_desg: engineer
+
+
+   

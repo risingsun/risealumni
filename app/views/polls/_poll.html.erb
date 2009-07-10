@@ -1,0 +1,37 @@
+<div class="widget_large">
+  <span class="widget_lrg_top"></span>
+  <h3 class="blog_head">
+    <%= icon(poll.profile) %>
+    <%= link_to sanitize(poll.question),profile_poll_path(poll.profile, poll)%>
+    <%- if @p && me -%>
+      <%= link_to image_tag('cancel.png', :title => "Close poll"), 
+                  poll_close_profile_poll_path(@profile,poll) unless poll.poll_close? %>
+      <%= link_to image_tag('edit.png', :title => "Edit poll"), 
+                  edit_profile_poll_path(@profile,poll)if poll.can_edit? %>
+      <%= link_to image_tag('delete.png', :title => "Delete poll"), 
+                  profile_poll_path(@profile, poll), 
+                  :method => :delete %>
+    <%- end -%>
+    <div class="created_date">Posted by <%= poll.profile.full_name %> at <%= poll.created_at.to_date.to_formatted_s(:rfc822) %>  </div>
+   </h3>
+   <div class="poll_text">
+    <% if !@p || (poll.responded? @p)%>
+        <%= render :partial => 'polls/poll_response', :locals =>{:poll => poll} %>
+    <% else %>
+      <div id="poll_errors"></div>
+      <div class="poll_option" id="poll_option_<%= poll.id %>">
+        <% remote_form_for(:poll, :url =>  votes_path, :method =>:post,:loading =>"$('poll_option_#{poll.id}').hide(); $('spinner_#{poll.id}').show();",:complete =>"$('spinner_#{poll.id}').hide();$('poll_option_#{poll.id}').show();") do |f| %>
+          <%= render :partial => 'polls/option', :collection => poll.poll_options %>
+          <button class="buttons" type="submit">
+            <%= theme_image("vote.png") %>
+          </button>
+        <% end %>
+      </div>
+      <div  id="spinner_<%= poll.id%>" style="display: none;"><%= image_tag('spinner.gif') %></div>
+   <% end %>
+ </div>
+  
+  <span class="widget_lrg_btm"></span>
+</div>
+
+ 

@@ -1,0 +1,20 @@
+<% @titles= Title.find_titles %>
+
+<div class="widget_large">
+  <span class="widget_lrg_top"></span>
+  <div class ="admin_class">
+    <h2 class="widget_title">Titles</h2>
+    <div id ="title">
+      <% @titles.each do |title| %>
+        <div class = "preference_key"> <%= title.name.titlecase %></div>        
+        <div class = "delete_title"><%= link_to_remote image_tag('delete.png'), :url => delete_title_admin_preference_path(title.id), 
+                                                                                :method => :delete %>
+        </div>                                                               
+      <% end %> 
+      <%= link_to_remote image_tag('add-button.png',:title => "Add"),  :url => new_title_admin_preferences_path,:method =>:get%> 
+      <%= link_to_remote 'Edit', :url => edit_title_admin_preferences_path, :method => :get %>               
+    </div>
+  </div> 
+  <div class="clear_div"></div>     
+  <span class="widget_lrg_btm"></span>
+</div>

@@ -1,0 +1,31 @@
+<div class="flash_message_class"><%= formatted_error_message :feedback %></div>
+<% rounded_corner(:title => 'Give us Feedback') do %>
+  <div id="feedback_form" class="edit_panel_profile">
+    <% form_for :feedback, :url => feedbacks_path, :method => :post do |f| 	%>
+      <% f.label_class = 'label_margin' %>
+      <% unless @p %>
+        <%= f.labelled_text_field('Name', :name, 
+                                  :title => "Name", :wrap_class => cycle(:row_light, :row_dark)) %>
+        <%= f.labelled_text_field('Email', :email, 
+                                :title => "Email", :wrap_class => cycle(:row_light, :row_dark)) %>        
+      <% end %>
+      <%= f.labelled_text_field('Subject', :subject, 
+                                :title => "Subject", :wrap_class => cycle(:row_light, :row_dark)) %>
+      <%= f.labelled_text_area('Message', :message, 
+                               :title => "Message", :wrap_class => "#{cycle(:row_light, :row_dark)}_large") %>
+      <% unless @test || @p %>
+        <div class="<%= cycle(:row_light, :row_dark) %>">
+          <%= captcha_field_with_options(:feedback, 
+                                         {:class => "text_field"}, 
+                                         {:class => "label_margin"}) if @production %>
+          <div class="error"><%= @feedback.errors[:captcha]%></div>
+        </div>
+      <% end %>
+      <div class="feedback_btn_container">
+        <button class="buttons" type="submit">
+          <%= theme_image("submit.png") %>
+        </button>
+      </div>
+    <% end %>
+  </div>
+<% end %>

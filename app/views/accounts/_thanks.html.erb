@@ -1,0 +1,8 @@
+<% rounded_corner(:title => "Thanks for signing up!" + image_tag("help.png", :title => "Help", :class => "help")) do %>
+  <div class="comments signup_thanks">
+    Please click on the confirmation link sent to <strong><%= @user.email %></strong>to verify and continue. 
+    Do keep in mind that sometimes email might end up in your span/junk folder, 
+    in that case, please configure your email client to receive all email from 
+    <strong><%= SITE %></strong> as not junk.
+  </div>
+<% end %>

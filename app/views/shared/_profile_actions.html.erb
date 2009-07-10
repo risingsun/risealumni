@@ -1,0 +1,16 @@
+<% rounded_corner(:size => :small, :title => 'Profile Actions') do %>
+  <div class="profile_div">
+    <div class='profile_links'>
+      <div>
+        <span id="flink<%= @profile.id%>"><%= get_friend_link @p, @profile %></span>
+        <span id="spinner_<%= @profile.id%>" style="display: none;"><%= image_tag('spinner.gif') %></span>
+      </div>
+      <div><%= link_to 'Direct Message', direct_message_profile_messages_path(@profile) %></div>
+      <div><%= link_to('Read My Blogs', profile_blogs_path(@profile)) %></div>
+      <div><%= link_to('See My Polls', profile_polls_path(@profile)) %></div>
+      <% if @p.has_wall_with(@profile) -%>
+        <div><%= link_to 'Our Wall-to-Wall', profile_comments_path(@profile) %></div>
+      <%- end -%>
+    </div>
+  </div>
+<% end %>

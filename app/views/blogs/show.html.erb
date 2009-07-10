@@ -1,0 +1,12 @@
+<% content_for :head do  -%>
+  <%= auto_discovery_link_tag :rss, profile_blogs_url(@profile, :rss), :title=>"#{@profile.full_name}'s Blogs" %>
+<% end -%>
+
+<div>
+  <h2 class="page_title">
+    <%= @profile.full_name %>'s blog
+    <%= link_to image_tag('add_new_post.png', :title=>"Add New Post", :class=>"add_new_post2"), 
+                new_profile_blog_path(@profile) if @my_blog %>
+  </h2>
+  <%= render :partial => 'blogs/blog', :locals => {:show_all_comments => true,:blog => @blog} %>
+</div>

@@ -1,0 +1,20 @@
+<% rounded_corner(:title => "#{@profiles && @profiles.total_entries} Known Site users from #{@group}") do %>
+  <% unless @profiles.blank? %>
+    <%= render :partial  => "shared/mini_profile", :collection => @profiles, :locals => {:with_friending => true} %>
+  <%else%>
+    <span class="comments"><%= SITE_NOT_RECORD_MSG%></span>
+  <%end%>
+  <div class="clear_div"></div>
+  <%= will_paginate @profiles%>   
+<% end %>
+<% rounded_corner(:title => "#{@students && @students.length} Unregistered Students from #{@group}") do %>
+  <% unless @students.blank? %>
+    <ul id="student_check_list">
+      <% for student in @students %>
+        <li><%= student.full_name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <span class="comments"><%= SITE_NOT_RECORD_MSG%></span>
+  <%  end %>
+<% end %>

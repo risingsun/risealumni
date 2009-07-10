@@ -1,0 +1,9 @@
+<div id='cropwrap'>
+  <%= display_image(photo,{},{:id => 'cropimage'})%>
+</div>
+<div id='cropresults'>
+  <%= f.labelled_text_field "X", :x, :wrap_class => cycle(:row_complete_light, :row_complete_dark) %>
+  <%= f.labelled_text_field "Y", :y, :wrap_class => cycle(:row_complete_light, :row_complete_dark) %>
+  <%= f.labelled_text_field "Width(=531px)", :width, :wrap_class => cycle(:row_complete_light, :row_complete_dark) %>
+  <%= f.labelled_text_field "Height(=264px)", :height, :wrap_class => cycle(:row_complete_light, :row_complete_dark) %>
+</div>

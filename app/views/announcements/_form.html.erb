@@ -1,0 +1,19 @@
+<% rounded_corner(:title => "Announcement Update/Create", :size => 'lrg') do %>
+  <% form_for(@announcement) do |f| %>
+    <%= f.error_messages %>
+    <% f.label_class = 'label_margin' %>
+    <%= f.labelled_text_field "Message", :message, :wrap_class => cycle(:row_light2, :row_dark2) %>
+    <div class="<%= cycle(:row_light2, :row_dark2)%>">
+      <label for="announcement_starts_at" class="label_margin">Starts at</label>
+      <%= f.datetime_select('starts_at') %>
+    </div>
+    <div class="<%= cycle(:row_light2, :row_dark2)%>">
+      <label for="announcement_ends_at" class="label_margin">Ends at</label>
+      <%= f.datetime_select('ends_at') %>
+    </div>
+    <div class="large_btn_container2">
+      <%= f.submit 'Save' %>
+    </div>
+  <% end %>
+  <div class="clear_div"></div>     
+<% end %>

@@ -1,0 +1,20 @@
+<% cache 'footer' do %>
+  <div class="footer_text_top"><%= SITE_DESC %></div>
+  <div class="footer_text_left">
+    <%= SiteContent.get_content('footer','footer_links' ) %>
+ </div>
+ <div class="footer_text_right"><em>Rising Sun &copy; 2008 </em>
+    <%= link_to image_tag('RisingSun_logo.gif'), "http://www.risingsuntech.net" %>
+  </div>
+  <% if Rails.env == 'production' && !GOOGLE_ANALYTICS_TRACKER.blank? %>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("<%= GOOGLE_ANALYTICS_TRACKER %>");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+  <% end %>
+<% end %>

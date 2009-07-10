@@ -1,0 +1,13 @@
+<%
+#locals
+poll ||= feed_item.item
+%>
+
+<div id="<%= feed_item.dom_id %>">
+  <div class="comments">
+    <img src="/images/poll_icon.png" title="User Photo Icon"  alt="User Photo Icon" /> 
+    <strong><%= link_to h(poll.profile.full_name), poll.profile %> created a poll <%= time_ago_in_words poll.created_at %> ago</strong><br />
+    <%= link_to poll.question, profile_poll_path(poll.profile, poll) %>
+  </div>
+    <%= x_feed_link(feed_item) if me %>    
+</div>

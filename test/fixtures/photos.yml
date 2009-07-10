@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  caption: 
+  image_file_name: user.png
+  image_content_type: 'image/png'
+  profile_id: user
+  set_as_blurb:
+
+#
+# two:
+#   column: value

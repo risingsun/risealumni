@@ -1,0 +1,19 @@
+<%
+# locals
+if @feedback.profile
+  name = @feedback.profile.full_name
+  email = @feedback.profile.email
+else
+  name = @feedback.name
+  email = @feedback.email
+end
+
+%>
+
+<div class="activity_box">
+  <h2><%= @feedback.subject %></h2>
+  Message :<%= @feedback.message %><br/>
+  Sender Name :<%= name %><br/>
+  Sender email :<%= email %><br/>
+  <div class="clear"></div>
+</div>

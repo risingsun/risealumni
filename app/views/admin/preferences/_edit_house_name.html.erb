@@ -1,0 +1,11 @@
+<% form_for(:house_name,:url => update_house_name_admin_preferences_path,:html =>{:method => :put}) do |f| %>
+  <% @house_names.each_with_index do|house_name, index| %>
+    <% fields_for "house_names[#{index}]",house_name do |f| %>
+      <%= hidden_field_tag "house_names[#{index}][id]" ,house_name.id %>
+      <%= f.labelled_text_field "", :name, :title => "Title",:class => "text_field", :wrap_class => :row_complete %>
+    <%end%>
+  <%end%>
+  <button class="buttons" type="submit">
+    <%= image_tag('Update.png')%>
+  </button>
+<%end%>

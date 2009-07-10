@@ -1,0 +1,24 @@
+<% rounded_med_corner(:id => 'general_info', :title => 'General Info') do %>
+  <% fields_for :user, @user do |u| %>
+    <% u.label_class = 'label_margin' %>
+    <%= u.labelled_text_field('Login',:login, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <% end %>
+  <%= p.labelled_collection_select('Title',:title,TITLES,:first, :first, {:wrap_class => cycle(:row_light2, :row_dark2), :include_blank => true}) %>
+  <%= p.labelled_text_field('First Name',:first_name, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Middle Name',:middle_name, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Last Name',:last_name, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Maiden Name',:maiden_name, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_collection_select('Gender',:gender,Profile::GENDER_FIELDS,:first, :first, {:wrap_class => cycle(:row_light2, :row_dark2), :include_blank => true}) %>
+  <%= p.labelled_collection_select('Blood Group',:blood_group,Profile::BLOOD_GROUPS,:first, :first, {:wrap_class => cycle(:row_light2, :row_dark2), :include_blank => true}) %>
+  <%= p.labelled_collection_select("Groups", :group, GROUPS.reject{|obj| GROUPS.first==obj},:first, :first,:wrap_class => cycle(:row_light2, :row_dark2)) %>                                  
+  <%= p.labelled_collection_select('House Name',:house_name,HOUSE_NAMES,:first, :first, {:wrap_class => cycle(:row_light2, :row_dark2), :include_blank => true}) %>
+  <%= p.labelled_text_field('Date of Birth',:date_of_birth, :class => "datefield datebalks" ,:wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_collection_select('Relationship Status',:relationship_status,Profile::RELATIONSHIP_STATUS,:first, :first, {:wrap_class => cycle(:row_light2, :row_dark2), :include_blank => true}) %>
+  <%= p.labelled_text_field('Anniversary',:anniversary_date, :class => "datefield datebalks" ,:wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Spouse Name',:spouse_name, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_field('Professional Qualification',:professional_qualification, :wrap_class => cycle(:row_light2, :row_dark2)) %>
+  <%= p.labelled_text_area('About Me',:about_me, :wrap_class => "row_dark_large2") %>
+  <%= p.labelled_text_area('Activities',:activities, :wrap_class => "row_light_large2") %>
+<% end %>
+<input type="hidden" name="switch" value="name" />
+

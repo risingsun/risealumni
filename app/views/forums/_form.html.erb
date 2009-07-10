@@ -1,0 +1,8 @@
+<% form_for @forum do |f| %>
+  <% f.label_class = 'label_margin' %>
+  <%= f.labelled_text_field "Name", :name, :title => "Title",:class => "big_text_field", :wrap_class => :row_complete_for_forum %>
+  <%= f.labelled_text_area "Description", :description,:class => "big_text_area_for_forum", :wrap_class => :row_complete_large_for_forum %>
+  <button class="buttons" type="submit">
+    <%= image_tag('save.png')%>
+  </button>
+<% end %>

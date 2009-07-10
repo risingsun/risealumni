@@ -1,0 +1,14 @@
+<%-
+#locals
+comment = feed_item.item
+-%>
+
+
+<div id="<%= feed_item.dom_id %>">
+  <div class="comments">
+    <img src="/images/callout_bubble.gif" title="User Comment Icon" alt="User Comment Icon" />
+    <%= commentable_text comment %>
+  </div>
+  <%= x_feed_link(feed_item) if me %>
+</div>
+
