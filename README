@@ -11,8 +11,7 @@ Then add the github repo to your gems:
 * The first thing to do is install the ruby gems that are required. For each gem listed in the README, at the command line, do something like "gem install [gem name]" or "sudo gem install [gem name]".
 * The next thing to do is set up your database (steps 1-4 in the README). risealumni is setup to use MySQL by default, so just follow the instructions in the README and configure the files for your computer.
 * Skip step 5.
-* Now setup global variable (site name and url and stuff) (steps 6-13) and change the (r)html and css to suit your taste.
-* In dev mode, search (steps 14-16) should work right out of the box (assuming you install the gems). The search instructions are really for a production environment.
+* Now setup global variable (site name and url and stuff) (steps 6-17) and change the (r)html and css to suit your taste.
 * Start risealumni with the typical "./script/server" and point your browser to "http://localhost:3000".
 
 
@@ -83,11 +82,12 @@ Setup default values:
   9. Change the values in config/initializers/global_variables.rb to match your site and domain.(Specifically SITE_NAME_FULL,SITE_NAME, SITE, MAILER_TO_ADDRESS, MAILER_FROM_ADDRESS, ADMIN_RECIPIENTS)
   10. Edit the ActionMailer settings in config/initializers/global_variables.rb to match your domain.(Specifically "address","domain","user_name","password")
   12. Paste "Your twitter login" and "Your twitter password" in config/twitter.yml.
-  13. Go to the section "About flickr integration" and follow the steps to either use flickr or not.
-  14. Edit public/404.html, public/500.html, app/views/account_mailer/*
-  15. Edit application.css to suite your tastes.
-  16. Edit tos,academics,contact,credits,history and about_us pages in app/views/home/tos,app/views/home/.
-  17. Paste "Your domain" and  "Your gmaps api key" in config/gmaps_api_key.yml.
+  13. Paste "Your domain" and  "Your gmaps api key" in config/gmaps_api_key.yml.
+  14. Go to the section "About flickr integration" and follow the steps to either use flickr or not.
+  15. Edit public/404.html, public/500.html, app/views/account_mailer/*
+  16. Edit application.css to suite your tastes.
+  17. Edit tos,academics,contact,credits,history and about_us pages in app/views/home/tos,app/views/home/.
+  
 
 About flickr integration
 ------------------------
