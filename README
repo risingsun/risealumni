@@ -79,25 +79,23 @@ Setup default values:
 6. Edit config/initializers/exception_notifier.rb
 7. Edit the config/environment.rb file and change the config.action_controller.session data
 8. Edit config/environments/development.rb and production.rb to suit your tastes. (Specifically config.action_mailer.delivery_method)
-9. Change the values in config/initializers/global_variables.rb to match your site and domain. (Specifically SITE_NAME, SITE, MAILER_TO_ADDRESS, MAILER_FROM_ADDRESS, REGISTRATION_RECIPIENTS)
-10. Go to the section "About flickr integration" and follow the steps to either use flickr or not.
-
-11. Edit public/404.html, public/500.html, app/views/account_mailer/*
-12. Edit application.css to suite your tastes.
-13. Edit app/views/home/terms.
+9. Change the values in config/initializers/global_variables.rb to match your site and domain.(Specifically SITE_NAME_FULL,SITE_NAME, SITE, MAILER_TO_ADDRESS, MAILER_FROM_ADDRESS, ADMIN_RECIPIENTS)
+10. Edit the ActionMailer settings in config/initializers/global_variables.rb to match your domain.(Specifically "address","domain","user_name","password")
+12. Paste "your login" and "password" in config/twitter.yml.
+13. Go to the section "About flickr integration" and follow the steps to either use flickr or not.
+14. Edit public/404.html, public/500.html, app/views/account_mailer/*
+15. Edit application.css to suite your tastes.
+16. Edit tos,academics,contact,credits,history and about_us pages in app/views/home/tos,app/views/home/.
+17. paste your  "Your domain" and  "Your gmaps api key" in in config/gmaps_api_key.yml.
 
 About flickr integration
+------------------------
 
 If you WANT to have flickr integration in your application, follow these setup instructions:
 1. Go http://flickr.com/services/api/keys/apply/ to apply for a flickr api key.
-2. Copy the Key and Secret into config/initializers/flickr.rb
+2. Copy the Key and Secret into config/initializers/global_variables.rb.(Specifically FLICKR_USER_ACCOUNT,FLICKR_KEY, FLICKR_SECRET)
 3. From the command line, run "ruby script/authorize_flickr.rb" and follow the instructions.
   This stores the flickr auth stuff into config/flickr.cache. If you add this cache file to your source control, then you shouldn't have to repeat this in production. Alternatively, you can get a different key for production, if you'd like.
-
-If you DO NOT WANT to have flickr integration in your application, follow these setup instructions:
-1. Delete line 15 from app/controllers/profiles_controller.rb [@flickr = @profile.flickr_username.blank? ? [] : flickr_images(flickr.people.findByUsername(@profile.flickr_username))]
-2. Delete lines 22-35 in app/views/profiles/_public.html.erb
-
 
 Facebook Configuration
 ----------------------
@@ -135,7 +133,7 @@ Facebook Configuration
    In step 4  
      "{*actor*} has scribbled on {*target*}'s wall at {*userprofile*}."
    In step 5 
-     "{"*userprofile*":"<a href='http://risealumni.com'>My Profile</a>"}"
+     "{"userprofile":"<a href='http://risealumni.com'>My Profile</a>"}"
    In step 7
      "{*actor*} has scribbled on my school community wall at {*userprofile*}."
    In step 8
@@ -146,7 +144,7 @@ Facebook Configuration
    In step 4  
      "{*actor*} has published a blog post titled {*blog_title*}."
    In step 5 
-     "{"*blog_title*":"<a href='http://risealumni.com'>My Blog</a>"}"
+     "{"blog_title":"<a href='http://risealumni.com'>My Blog</a>"}"
    Now click Skip (and ignore/Okay any errors) until you get to the final page and then click “Register Template Bundle”.
    It will give you a Template Bundle ID, and you’ll want to get a copy of that.and paste it in BLOG_BUNDLE_ID = "Template Bundle ID" at global_variables.rb file.
 
@@ -154,7 +152,7 @@ Facebook Configuration
    In step 4  
      "{*actor*} has started following {*target*}."
    In step 5 
-     "{"*userprofile*":"<a href='http://risealumni.com'>My Profile</a>"}"
+     "{"userprofile":"<a href='http://risealumni.com'>My Profile</a>"}"
    In step 7
      "{*actor*} has started following my updates on {*actorprofile*}."
    In step 8

@@ -2,5 +2,5 @@
 
 
 ExceptionNotifier.sender_address =  %("Name Error <error@appname.url>")
-ExceptionNotifier.exception_recipients = %W()
+ExceptionNotifier.exception_recipients = %W("Your ids")
 ExceptionNotifier.email_prefix = "[App name Exception] "
