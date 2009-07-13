@@ -50,6 +50,7 @@ Rails::Initializer.run do |config|
   config.gem 'fiveruns-memcache-client', :lib => 'memcache'
   config.active_record.colorize_logging = false
   config.gem 'facebooker'
+  config.gem 'hpricot'
 end
 
 # The following line prevents Mongrels from dying after periods of inactivity

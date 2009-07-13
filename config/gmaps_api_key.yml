@@ -4,11 +4,10 @@
 #In production, the app can be accessed through 2 different hosts: thepochisuperstarmegashow.com and exmaple.com. There then needs a 2-key hash. If you deployed to one host, only the API key would be needed (as in development and test).
 
 development:
-"Your api key"
+ ABQIAAAA-OLt6kmKcj5cxR3NEGiPXRTneACZCPyRKHrLBh9DasPkWTJK_RTjlr2GPXCT9cAiIKQFWECTH8Qeew
 
 test:
- "Your api key"
+ ABQIAAAA-OLt6kmKcj5cxR3NEGiPXRTneACZCPyRKHrLBh9DasPkWTJK_RTjlr2GPXCT9cAiIKQFWECTH8Qeew
 
 production:
- "Your domain": "Your gmaps api key"
- 
+ risealumni.com: ABQIAAAA-OLt6kmKcj5cxR3NEGiPXRR9kW0cZOBYTpqYRF9XQ10zXJdoPBTqCcDBzDdUTQM9GSrcMQDyWtbX4g
