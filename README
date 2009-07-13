@@ -49,6 +49,7 @@ Install the Required Gems:
   - facebooker
   - rflickr
   - RedCloth
+  - hpricot
   - rmagick (will require ImageMagick, which is not a gem)
   - win32console (windows only)
 2. Run "rake gems:build" to build the gems that need building
