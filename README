@@ -21,11 +21,10 @@ Quick Setup (currently for non-Windows users only - due to ferret gem issues):
 
   1. Edit config/database.yml.tmp to reflect the database names you would like to use.
   2. Edit config/environments/production.rb so asset_host reflects the name of the production asset server
-  3. cp config/database.yml.tmp config/database.yml
-  4. MAKE SURE YOU UPGRADE TO GEMS 1.3.4.
-  5. RUN gem sources -a http://gems.github.com
-  7. rake test
-  8. See step #6 below to continue setup (near "Setup default values")
+  3. MAKE SURE YOU UPGRADE TO GEMS 1.3.4.
+  4. RUN gem sources -a http://gems.github.com
+  6. rake test
+  7. See step #5 below to continue setup (near "Setup default values")
 
 The getting_started rake task will install all required gems, create the databases in database.yml, 
 and migrate the development and test databases.
@@ -70,7 +69,7 @@ Setup the databases:
   1. Edit config/database.yml.tmp to reflect the database names you would like to use.
   2. cp config/database.yml.tmp config/database.yml
   3. rake db:create:all
-  4. rake mig a=no
+  4. rake db:migrate
 
 All tests pass:
   5. rake
@@ -108,7 +107,7 @@ Facebook Configuration
 
   3. Update the Facebook Application settings to point to your publicly available host.
 
-  4. Edit the facebooker.yml file to reflect your Facebook Application settings page.
+  4. Edit the facebooker.yml file to reflect your Facebook Application settings page.(Specifically api_key,secret_key,callback_url)
 
   5. Register the Facebook Post Templates:
     We need to register a "template bundle", which will be used to post updates to the News Feed of people who comment on your blog.
