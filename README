@@ -104,6 +104,8 @@ Facebook Configuration
   1. Add the Developer Application.
   
   2. Create a New Application.
+     See these posts for tips:
+     http://developers.facebook.com/get_started.php
 
   3. Update the Facebook Application settings to point to your publicly available host.
 
@@ -123,7 +125,7 @@ Facebook Configuration
         "{*actor*} has commented on my blog post titled {*titleText*} on {*blog*}."
       8. In the "Short Story Template Body" box, paste this exact text
         "{*actor*} has commented {*comment*} on my blog post titled {*titleText*} at {*blog*}."
-      9. Now click Skip (and ignore/Okay any errors) until you get to the final page and then click “Register Template Bundle”
+      9. Now click Skip (and ignore/Okay any errors) until you get to the final page and then click "Register Template Bundle"
       10.It will give you a Template Bundle ID, and you'll want to get a copy of that.and paste it in BLOG_COMMENT_BUNDLE_ID = "Template Bundle ID" at global_variables.rb file.
 
     Now whole process are repeated for posting updates to the News Feed of people who comment on your Profile's wall.
@@ -142,7 +144,7 @@ Facebook Configuration
        "{*actor*} has published a blog post titled {*blog_title*}."
      In step 5 
        "{"blog_title":"<a href='http://risealumni.com'>My Blog</a>"}"
-     Now click Skip (and ignore/Okay any errors) until you get to the final page and then click “Register Template Bundle”.
+     Now click Skip (and ignore/Okay any errors) until you get to the final page and then click "Register Template Bundle".
      It will give you a Template Bundle ID, and you'll want to get a copy of that.and paste it in BLOG_BUNDLE_ID = "Template Bundle ID" at global_variables.rb file.
 
     Step 1-10 are repeated for posting updates to the News Feed of people who started following you.
