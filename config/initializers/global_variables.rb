@@ -11,7 +11,7 @@ ActionMailer::Base.default_url_options[:host] = SITE
 SITE_NOT_RECORD_MSG = "Not Found"
  
 # Flick related
-FLICKR_USER_ACCOUNT = 'risealumni' unless RAILS_ENV == 'development'
+FLICKR_USER_ACCOUNT = 'Your flickr user account' unless RAILS_ENV == 'development'
 FLICKR_KEY = 'Your flickr key'
 FLICKR_SECRET = 'Your flickr secret'
 FLICKR_CACHE = "#{RAILS_ROOT}/config/flickr.cache"
@@ -101,3 +101,4 @@ BE_FRIEND_BUNDLE_ID = 'Your be friend bundle id'
 FOLLOW_BUNDLE_ID = 'Your follow friend story bundle id'
 PROFILE_COMMENT_BUNDLE_ID = 'Your profile comment story bundle id'
 BLOG_COMMENT_BUNDLE_ID = 'Your blog comment story bundle id'
+BLOG_BUNDLE_ID ='Your blog bundle id'
