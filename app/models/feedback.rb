@@ -21,7 +21,7 @@ class Feedback < ActiveRecord::Base
   validates_presence_of :name, :email, :if => Proc.new { |obj| obj.profile_id.blank? }
   
   validates_captcha :if => Proc.new { |obj| obj.profile_id.blank? }
-  validates_captcha if RAILS_ENV == 'production'
+  
 
   after_save :send_feedback_to_admin
   
