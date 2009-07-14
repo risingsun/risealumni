@@ -228,7 +228,7 @@ class User < ActiveRecord::Base
 
   # before filter 
   def encrypt_password
-    return if password.blank? && is_facebook_user?
+    return if password.blank? || is_facebook_user?
     self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if
     new_record? || @forgot
     self.crypted_password = encrypt(password)

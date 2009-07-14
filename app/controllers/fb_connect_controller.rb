@@ -24,12 +24,12 @@ class FbConnectController < ApplicationController
           if @u && !@u.email_verified
             reset_session
             flash[:error] = 'Your email address has not yet been confirmed.'
-            return redirect_back_or_default home_path
+            return redirect_back_or_default(home_path)
           elsif @u && @u.email_verified
             flash[:notice] = "Hello #{@u.full_name}"
-            return redirect_back_or_default profile_path(@u.profile)
+            return redirect_back_or_default(profile_path(@u.profile))
           else
-            return redirect_to signup_path.add_param({:fb_user => true})
+            return redirect_to(signup_path.add_param({:fb_user => true}))
           end
         end
       end

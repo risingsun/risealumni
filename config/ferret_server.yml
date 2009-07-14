@@ -1,5 +1,5 @@
 d___evelopment:
   port: 12005
-production:
+p_________________roduction:
   port: 10050
   pid_file: log/ferret.pid
