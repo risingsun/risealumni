@@ -87,7 +87,13 @@ Setup default values:
   15. Edit public/404.html, public/500.html, app/views/account_mailer/*
   16. Edit application.css to suite your tastes.
   17. Edit tos,academics,contact,credits,history and about_us pages in app/views/home/tos,app/views/home/.
-  
+
+Start Risealumn:
+
+  18. ./script/server
+  19. Go to the home page http://localhost:3000
+  20. Go to the signup page and create an account.
+  21. Go into the database and turn the is_admin flag to true on your new account in users table.  
 
 About flickr integration
 ------------------------
@@ -169,12 +175,7 @@ Facebook Configuration
        "{*actor*} and {*target*} are now following each other on {*profile*} . That's awesome!."
     It will give you a Template Bundle ID, and you'll want to get a copy of that.and paste it in BE_FRIEND_BUNDLE_ID = "Template Bundle ID" at global_variables.rb file.
 
-Start Risealumn:
 
-1. ./script/server
-2. Go to the home page http://localhost:3000
-3. Go to the signup page and create an account.
-4. Go into the database and turn the is_admin flag to true on your new account.
 
 
 
